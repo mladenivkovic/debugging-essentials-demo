@@ -6,5 +6,6 @@ gdb-FPE/ex2
 gdb-segfault/ex3
 gdb-optimization/ex4
 gdb-core-dump/ex5
+gdb-MPI/exMPI
 
 
