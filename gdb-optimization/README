@@ -1,0 +1,16 @@
+GDB optimization
+
+same as demo for gdb segfault backtrace, 
+1) moved for loop into function
+2) added optimization flag -O3
+
+
+
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+
+your code
+
+#pragma GCC pop_options
+
+
