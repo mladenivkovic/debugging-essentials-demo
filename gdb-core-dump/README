@@ -1,0 +1,11 @@
+Same as demo for gdb segfault
+
+Run CONTENTS OF disable_core_dumps.sh first (script doesn't work)
+crash program
+Run CONTENTS OF enable_core_dumps.sh first (script doesn't work)
+crash program
+load up core dump with gdb:
+    - get path from get_coredump_path.sh
+    - gdb -c path/file ./ex5
+
+
