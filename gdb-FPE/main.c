@@ -23,16 +23,13 @@ int main(void) {
 
   /* enables floating point exceptions */
   feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW);
-  /* feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW); */
 
   const int elements = 1000;
 
   for (int i = 0; i < elements; i++){
 
-    /* double val = 123.456 / (i - 800); */
     double val = some_recursive_function(i, 0);
 
-    /* printf("%4d/%d, val=%g\n", i, elements, val); */
     if (i % 1000 == 0)
       printf("%4d/%d, val=%g\n", i, elements, val);
 
