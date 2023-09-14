@@ -1,4 +1,4 @@
-Demo for gdb FPE stack trace
+Demo for gdb segfault
 
 1) run program without gdb
 

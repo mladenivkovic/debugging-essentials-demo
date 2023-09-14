@@ -3,3 +3,7 @@
 
 gdb-basics/ex1
 gdb-FPE/ex2
+gdb-segfault/ex3
+gdb-optimization/ex4
+
+
