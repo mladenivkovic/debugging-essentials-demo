@@ -1,0 +1,10 @@
+Debugging Essentials Demo
+-------------------------
+
+
+Small demo programs to showcase what gdb and valgrind etc can do.
+
+Instructions are inside each directory's README.
+
+
+
