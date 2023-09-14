@@ -1,0 +1,23 @@
+Demo for gdb basics
+
+1) run program without gdb
+
+2) run program with gdb
+    show `run`
+
+3) make breakpoint at main.c:31
+    bt
+    list
+    p i
+    p i + 1
+    p i + 1 + 2 * i
+    p arr[i]
+    p arr
+    p st
+    n
+    c
+    info break
+    del 1
+
+4) make breakpoint at includes/my_includes.h:13
+    

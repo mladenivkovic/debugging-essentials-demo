@@ -16,7 +16,7 @@ int main(void) {
     /* fill up struct with meaningless stuff for demo */
     struct my_struct st;
     st.count = i;                  /* integer */
-    st.whatever = (i % 2) * 23.;   /* double */
+    st.whatever = (i % 2) * 23.7;  /* double */
     st.text = "Hello there";       /* char* */
 
     /* do some stuff */
@@ -25,6 +25,10 @@ int main(void) {
     /* print out progress every now and then */
     if (i % 100000 == 0)
       printf("%9d/%9d\n", i, elements);
+
+    /* catch this with breakpoints for demo */
+    if (i == 123456 || i == 234567 || i == 345678 || i == 456789)
+      printf("Got special i=%9d\n", i);
   }
 
   /* cleanup */
