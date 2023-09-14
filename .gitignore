@@ -1,0 +1,5 @@
+**/.cache/
+**/compile_commands.json
+
+gdb-basics/ex1
+gdb-FPE/ex2
