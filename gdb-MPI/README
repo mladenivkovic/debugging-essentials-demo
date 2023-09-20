@@ -1,1 +1,5 @@
 Just use run.sh and show how gdb can be used with MPI
+
+First show contents of main.c
+
+Rank 2 should crash after 20s

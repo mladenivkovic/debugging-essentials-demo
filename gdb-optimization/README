@@ -4,7 +4,9 @@ same as demo for gdb segfault backtrace,
 1) moved for loop into function
 2) added optimization flag -O3
 
+Show that values can be optimized out
 
+Idea: Show that single function can have optimization turned off
 
 #pragma GCC push_options
 #pragma GCC optimize ("O0")

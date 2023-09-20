@@ -30,7 +30,7 @@ int main(void) {
 
     double val = some_recursive_function(i, 0);
 
-    if (i % 1000 == 0)
+    if (i % 100 == 0)
       printf("%4d/%d, val=%g\n", i, elements, val);
 
   }
