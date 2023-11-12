@@ -1,12 +1,12 @@
 **/.cache/
 **/compile_commands.json
 
-gdb-basics/ex1
-gdb-FPE/ex2
-gdb-segfault/ex3
-gdb-optimization/ex4
-gdb-core-dump/ex5
-gdb-MPI/exMPI
-valgrind/ex6
+demo/gdb-basics/ex1
+demo/gdb-FPE/ex2
+demo/gdb-segfault/ex3
+demo/gdb-optimization/ex4
+demo/gdb-core-dump/ex5
+demo/gdb-MPI/exMPI
+demo/valgrind/ex6
 
 

@@ -3,18 +3,12 @@ Debugging Essentials Demo
 
 
 Small demo programs to showcase what gdb and valgrind etc can do.
+Also small exercise programs using linear advection.
 
-Instructions are inside each directory's README.
+Contents:
 
-Intended order of demonstrations:
-
-gdb-basics
-gdb-FPE
-gdb-segfault
-gdb-optimization
-gdb-core-dump
-gdb-MPI
-valgrind
-
+- `demo/` : small programs intended for live demo
+- `exercise/` : Small program intended for exercise. 
+    Hunt down bugs in 1D linear advection code.
 
 
