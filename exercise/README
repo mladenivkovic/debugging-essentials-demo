@@ -1,0 +1,19 @@
+Contents of Exercise Directory
+==============================
+
+
+plot_solution.py:
+    a python3 script which will plot the outputs the code generates.
+
+solution/
+    directory containing correct versions of the linear advection code.
+    Includes notes on what bugs were introduced on purpose for the exercise.
+    You should be able to compile and run the codes, and to compare the
+    expected results with your own.
+
+src/
+    source files for the code to be debugged as an exercise. Both a C and
+    a fortran version exist.
+
+theory/
+    contains TeX files that explain a bit what the code is supposed to be doing.
