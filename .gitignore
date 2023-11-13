@@ -9,4 +9,8 @@ demo/gdb-core-dump/ex5
 demo/gdb-MPI/exMPI
 demo/valgrind/ex6
 
+*.o
+*.png
+*.dat
+linear_advection
 
