@@ -1,0 +1,19 @@
+\section{Notation}
+
+
+We are working on numerical methods.
+Both space and time will be discretized.
+
+Space will be discretized in cells which will have integer indices to describe their position.
+Time will be discretized in fixed time steps, which may have variable lengths.
+Nevertheless the time progresses step by step.
+
+In 1D, the index 0 represents the leftmost cell.
+
+We have:
+\begin{itemize}
+	\item integer subscript: Value of a quantity at the cell, i.e. the center of the cell. Example: $\U_i$, $\U_{i-2}$.
+	\item non-integer subscript: Value at the cell faces, e.g. $\F_{i-\half}$ is the flux at the interface between cell $i$ and $i-1$, i.e. the left cell as seen from cell $i$.
+	\item integer superscript: Indication of the time step. E.g. $\U ^ n$: State at timestep $n$
+	\item non-integer superscript: (Estimated) value of a quantity in between timesteps. E.g. $\F^{n + \half}$: The flux at the middle of the time between steps $n$ and $n + 1$.
+\end{itemize}
