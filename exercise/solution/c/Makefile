@@ -16,9 +16,18 @@ OPTFLAGS= -O3 	# aggressive optimization
 DEBUGFLAGS= 	# Flags used for debugging. You'll want to add `-g` here to enable
 				# debugging symbols so you can work with gdb.
 
+
+
+# ===============================================================
+# You shouldn't need to touch anything below this line.
+
+
 linear_advection: main.c boundary_conditions.h cell.h initial_conditions.h io.h solver.h
 	$(CC) main.c -o linear_advection $(OPTFLAGS) $(DEBUGFLAGS)
 
+
+.PHONY:
+	clean
 
 clean:
 	rm -f *.o linear_advection

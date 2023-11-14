@@ -6,3 +6,4 @@ set -e
 make
 ./linear_advection
 python3 ../../plot_solution.py
+# eog *png

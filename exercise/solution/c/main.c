@@ -49,7 +49,7 @@ const int nghosts = 2;
 /*! Size of the box being simulated */
 const double boxsize = 2.;
 /*! size of a cell */
-const double dx = boxsize / (double) ncells;
+const double dx = boxsize / (double) (ncells + 1);
 
 
 
