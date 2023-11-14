@@ -16,8 +16,8 @@ void bc_apply_periodic_boundary_conditions(struct cell* cells,
   for (int i = 0; i < nghosts; i++){
    /* start at index of last actual cell - nghosts
     * index of last actual cell = nghosts + ncells - 1 */
-    struct cell* src = &cells[ncells + nghosts - 1 + i];
-    struct cell* dest = &cells[ncells + i];
+    struct cell* src = &cells[ncells - 1 + i];
+    struct cell* dest = &cells[i];
     cell_copy(src, dest);
   }
 

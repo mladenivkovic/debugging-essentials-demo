@@ -28,7 +28,7 @@ module boundary_conditions
     do i = 1, nghosts
       ! start at index of last actual cell - nghosts
       ! index of last actual cell = nghosts + ncells
-      call cell_copy(cells(ncells+nghosts+i), cells(nghosts+i))
+      call cell_copy(cells(ncells+i), cells(i))
     enddo
 
     ! Copy content of left boundary into right ghost cells
