@@ -14,9 +14,13 @@ OPTFLAGS= -O3 	# aggressive optimization
 				# Try -O0, -O1, -O2 for example.
 DEBUGFLAGS= 	# Flags used for debugging. You'll want to add `-g` here to enable
 				# debugging symbols so you can work with gdb.
-FORTRANFLAGS= -ffree-line-length-none -pedantic -fbounds-check
-OPTFLAGS= -O0
-DEBUGFLAGS = -g -Wall
+
+FORTRANFLAGS= -ffree-line-length-none
+
+
+
+# ===============================================================
+# You shouldn't need to touch anything below this line.
 
 OBJ= params.o cell.o initial_conditions.o io.o boundary_conditions.o solver.o
 
@@ -48,4 +52,4 @@ linear_advection: linear_advection.f90 $(OBJ)
 	clean
 
 clean:
-	rm -f *.o linear_advection
+	rm -f *.o *.mod linear_advection
