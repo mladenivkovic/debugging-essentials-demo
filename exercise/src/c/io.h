@@ -50,7 +50,7 @@ void io_write_output(int *snapshot,
   fprintf(outfilep, "#%11s,%12s\n", "x", "q");
   for (int i = nghosts; i < ncells + nghosts; i++) {
     struct cell c = cells[i];
-    fprintf(outfilep, "%12.6e,%12.6e\n", (c.index + 0.5) * c.dx, c.q_old);
+    fprintf(outfilep, "%12.6e,%12.6e\n", (c.index - nghosts + 0.5) * c.dx, c.q_old);
   }
 
   fclose(outfilep);

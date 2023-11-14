@@ -12,5 +12,7 @@ demo/valgrind/ex6
 *.o
 *.png
 *.dat
+*.mod
 linear_advection
+
 
