@@ -192,8 +192,8 @@ def plot_solution(x, q, t, step, filename):
     ax = fig.add_subplot(111)
     ax.scatter(x, q, s=2, marker=".")
 
-    ax.set_xlabel("$x$", usetex=True)
-    ax.set_ylabel("$q(x)$", usetex=True)
+    ax.set_xlabel("$x$")
+    ax.set_ylabel("$q(x)$")
 
     title = "t = {0:12.3e}, step = {1:6d}".format(t, step)
     ax.set_title(title)
