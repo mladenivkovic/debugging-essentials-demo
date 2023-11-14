@@ -136,17 +136,17 @@ module solver
       type (cell), dimension(1:ncells+2*nghosts), intent(inout) :: cells
       real(dp), intent(in)                                      :: dt
 
-      integer :: ncells_tot, nelements
+      integer :: ncells_tot
       integer :: i, j
 
       ! old state q(x)
-      real(dp), dimension(:), allocatable :: q_old
+      real(dp), dimension(:), pointer :: q_old
       ! new state q(x), i.e. state containing solution
-      real(dp), dimension(:), allocatable :: q_new
+      real(dp), dimension(:), pointer :: q_new
       ! advection coefficients.
-      real(dp), dimension(:), allocatable :: a
+      real(dp), dimension(:), pointer :: a
       ! cell widths
-      real(dp), dimension(:), allocatable :: dx
+      real(dp), dimension(:), pointer :: dx
 
       allocate(q_old(1:VECTOR_SIZE))
       allocate(q_new(1:VECTOR_SIZE))
@@ -166,14 +166,8 @@ module solver
 
       do i = 1, ncells_tot, VECTOR_SIZE - 1
 
-        ! How many elements are we actually working on?
-        nelements = VECTOR_SIZE;
-        if (i + VECTOR_SIZE > ncells_tot) then
-          nelements = ncells_tot - i
-        endif
-
         ! Gather data into arrays
-        do j = 1, nelements
+        do j = 1, VECTOR_SIZE
           q_old(j) = cells(i+j)%q_old;
           q_new(j) = 0.;
           a(j) = cells(i+j)%a;
@@ -181,10 +175,10 @@ module solver
         enddo
 
         ! Call the actual solver
-        call solver_solve_on_array(nelements, q_old, q_new, a, dx, dt);
+        call solver_solve_on_array(VECTOR_SIZE, q_old, q_new, a, dx, dt);
 
         ! Copy solution back into array-of-structs
-        do j = 2, nelements
+        do j = 2, VECTOR_SIZE
           cells(i+j)%q_new = q_new(j);
         enddo
       enddo
@@ -193,12 +187,6 @@ module solver
       do i = 1, ncells_tot
         cells(i)%q_old = cells(i)%q_new;
       enddo
-
-      ! Clean up after yourself
-      deallocate(q_old);
-      deallocate(q_new);
-      deallocate(a);
-      deallocate(dx);
 
     end subroutine solver_step
 
