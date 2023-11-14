@@ -1,0 +1,92 @@
+%====================================================
+\section{Overview}
+%====================================================
+
+The goal of this exercise is to get you started with debugging using tools such as \verb*|gdb| and
+\verb*|valgrind|. To this end, a toy code is provided, both in C and in Fortran, which has been
+intentionally riddled with bugs for you to find and fix. The buggy code is stored in
+\verb|exercise/src/c| and \verb*|exercise/src/f90|, respectively. Solutions are available in
+\verb|exercise/solutions/|. You may want to run the codes stored there to compare what the correct
+output should be.
+
+
+This overview aims to provide a brief summary of the toy code, its main algorithm, and the equations
+being solved. Much more information is given in subsequent Sections, but this overview should
+suffice to get you started.
+
+
+The toy code solves an equation called ``\textit{linear advection with constant coefficients}'' in
+1D. That equation is given by:
+
+\begin{equation}
+	\DELDT{ q } + a \cdot \DELDX{q} = 0 \label{eq:advection-equation-overview}
+\end{equation}
+
+with $a = \text{ const } > 0$. An analytical solution exists, and is given by any function $q(x,t)$
+which satisfies
+
+\begin{equation}
+	q(x, t) = q(x - a (t - t_0), t_0) .\label{eq:advection-solution-overview}
+\end{equation}
+
+It describes a function $q(x, t)$ of any arbitrary shape being translated by $a t$ as time evolves
+(see e.g. Figure~\ref{fig:advection-analytical-solution}). So the solution you should be expecting
+is the same initial shape traveling along the $x$-axis with constant speed $a$, save for some
+numerical diffusion (see Fig.~\ref{fig:linear-advection-results}).
+
+To solve the problem numerically, we discretize space in $N$ cells of equal width $\Delta x$. The
+cells are given an integer index $i$. The numerical solution at a subsequent time step $t^{n+1}$
+given the current state $t^n$ is given by:
+
+\begin{equation}
+	q_i^{n+1} = q_i^{n} +  a \frac{\Delta t}{\Delta x} \left( q_{i-1}^n - q_{i}^n \right)
+	\label{eq:advection-numerical-overview}
+\end{equation}
+
+where the time step size $\Delta t$ must be limited by the so-called ``CFL condition''
+
+\begin{equation}
+	\Delta t_{max} = C_{cfl} \frac{\Delta x}{a} \label{eq:CFL1D-overview}
+\end{equation}
+
+where $C_{cfl} \in [0, 1) $ is a user-set factor.
+
+For this exercise, we employ \emph{periodic boundary conditions}, i.e. we set up the solver such
+that whatever leaves or enters on one side of our simulation box also enters or leaves on the
+opposite side, respectively. To achieve this behavior, we add additional cells (``\emph{ghost
+cells}'') around our simulation box.
+
+Suppose we have 1D grid with $N$ cells and require 2 ghost cells each, which will have indices $-2$,
+$-1$, $N+1$, and $N+2$. We obtain periodic boundary conditions by enforcing
+
+\begin{align*}
+	q_{-2} &= q_{N-1} \\
+	q_{-1} &= q_{N}	\\
+	q_{N+1} &= q_0 	\\
+	q_{N+2} &= q_1
+\end{align*}
+
+See also Figure~\ref{fig:boundary_periodic}.
+
+
+Finally, a brief description of the full algorithm of the solver:
+
+\begin{tcolorbox}
+To start, set $t_{current} = t^0 = t_{start}$ and set up the initial states $q_i^0$ for
+each cell $i$.\\[.5em]
+%
+While $t_{current} < t_{end}$, solve the $n$-th time step:\\[.5em]
+%
+\indent~~~~Apply the periodic boundary conditions \\[.5em]
+%
+\indent~~~~Find the maximal permissible time step $\Delta t$ using eq.~\ref{eq:CFL1D-overview}
+\\[.5em]
+%
+\indent~~~~For each cell $i$, find the updated states $q_i^{n+1}$ using
+eq.~\ref{eq:advection-numerical-overview} \\[.5em]
+%
+\indent~~~~Update the current time: $t_{current} = t^{n+1} = t^n + \Delta t$
+
+\end{tcolorbox}
+
+\newpage

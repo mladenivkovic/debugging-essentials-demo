@@ -13,14 +13,14 @@ The solution of the linear advection equation with constant coefficient $a = 1$ 
 units). On the left, the initial conditions are a step function, on the right, they are a
 Gaussian. The results at $t > 0$ have been repositioned to the original position to demonstrate
 how the initial shape changes over time, which according to the analytical solution shouldn't
-happen.
+happen. The cause of this phenomenon is an effect called ``numerical diffusion''.
     }%
     \label{fig:linear-advection-results}
 \end{figure}
 
-Figure~\ref{fig:linear-advection-results} shows the solution using our first 
-order finite difference method for a step function and a Gaussian at different 
-times, moved back to the original position to demonstrate how the initial shape 
+Figure~\ref{fig:linear-advection-results} shows the solution using our first
+order finite difference method for a step function and a Gaussian at different
+times, moved back to the original position to demonstrate how the initial shape
 changes over time. According to the known analytical solution, which says that
 $q(x, t)$ should only be translated with $a t$ as time evolves, this is wrong.
 
