@@ -1,11 +1,13 @@
-Demo for gdb basics
+01 - Demo for gdb basics
+=============================
+
 
 1) run program without gdb
 
 2) run program with gdb
     show `run`
 
-3) make breakpoint at main.c:31
+3) make breakpoint at main.c:38
     bt
     list
     p i
@@ -19,5 +21,6 @@ Demo for gdb basics
     info break
     del 1
 
-4) make breakpoint at includes/my_includes.h:13
+4) making breakpoint in other file:
+    make breakpoint at includes/my_includes.h:13
     

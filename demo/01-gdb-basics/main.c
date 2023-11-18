@@ -2,7 +2,13 @@
 #include <stdlib.h>
 
 #include "include/my_includes.h"
-#include "include/my_struct.h"
+
+/* Meaningless struct to demo pointer access */
+struct my_struct {
+  int count;
+  double whatever;
+  char* text;
+};
 
 
 int main(void) {
@@ -14,12 +20,14 @@ int main(void) {
   for (int i = 0; i < elements; i++){
 
     /* fill up struct with meaningless stuff for demo */
+    /* struct is defined in include/my_struct.h */
     struct my_struct st;
     st.count = i;                  /* integer */
     st.whatever = (i % 2) * 23.7;  /* double */
     st.text = "Hello there";       /* char* */
 
     /* do some stuff */
+    /* function is defined in include/my_includes.h */
     do_stuff(&arr[i], i, &st);
 
     /* print out progress every now and then */
