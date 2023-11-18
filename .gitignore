@@ -1,6 +1,7 @@
 **/.cache/
 **/compile_commands.json
 
+demo/*/ex
 demo/gdb-basics/ex1
 demo/gdb-FPE/ex2
 demo/gdb-segfault/ex3
