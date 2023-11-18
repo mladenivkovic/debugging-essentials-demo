@@ -2,14 +2,7 @@
 #include <stdlib.h>
 
 #include "include/my_includes.h"
-
-/* Meaningless struct to demo pointer access */
-struct my_struct {
-  int count;
-  double whatever;
-  char* text;
-};
-
+#include "include/my_struct.h"
 
 int main(void) {
 

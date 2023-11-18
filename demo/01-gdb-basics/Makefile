@@ -1,7 +1,7 @@
 
 
-ex: main.c include/my_includes.h
-	gcc main.c -o ex -g -Wall -Werror -lm
+ex: main.c include/my_includes.h include/my_struct.h
+	gcc main.c -o ex -g -Wall -Werror -pedantic -lm 
 
 
 clean:
