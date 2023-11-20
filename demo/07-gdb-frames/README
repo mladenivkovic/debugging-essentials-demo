@@ -1,0 +1,8 @@
+07 Demo GDB Frames Navigation
+==============================
+
+
+1) Show program
+2) break at main.c:6
+3) Show backtrace, navigate through frames, show `a`
+
