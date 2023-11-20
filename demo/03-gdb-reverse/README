@@ -1,0 +1,13 @@
+03 Demo for gdb with reverse
+==============================
+
+1) Show program
+
+2) Make breakpoint at main.c:6 and main.c:12
+
+NOTE: must turn off optimization.
+
+2.1) First breakpoint: `record`
+2.2) reverse-step
+
+    
