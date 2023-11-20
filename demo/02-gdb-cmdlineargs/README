@@ -1,0 +1,12 @@
+02 - Demo Command Line Arguments
+=====================================
+
+1) Show program. It crashes without cmdline args.
+
+2) Run program with gdb without --args.
+
+3) Run program with gdb without --args, but with cmdline args. Should crash.
+
+4) run program with gdb --args
+
+    
