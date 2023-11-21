@@ -1,4 +1,5 @@
-GDB optimization
+10 GDB optimization
+===========================
 
 same as demo for gdb segfault backtrace, 
 1) moved for loop into function
