@@ -5,9 +5,13 @@
 # 	icc	 intel C compiler
 # 	icx  intel oneAPI C compiler
 # 	clang LLVM C compiler
+#
+# if you are working on DINE, you should first load a compiler module.
+# Then you should be able to pass the compiler as CCOMP=$(CC)
 
 # compiler executable name
-CC=gcc
+CCOMP=$(CC) # should work on DINE
+# CCOMP=gcc
 
 # flags determining optimization
 OPTFLAGS= -O3 	# aggressive optimization
@@ -15,7 +19,7 @@ OPTFLAGS= -O3 	# aggressive optimization
 				# Try -O0, -O1, -O2 for example.
 DEBUGFLAGS= 	# Flags used for debugging. You'll want to add `-g` here to enable
 				# debugging symbols so you can work with gdb.
-
+CFLAGS= -std=c11
 
 
 # ===============================================================
@@ -26,22 +30,22 @@ OBJ= boundary_conditions.o cell.o initial_conditions.o io.o solver.o
 all: linear_advection
 
 boundary_conditions.o: boundary_conditions.c boundary_conditions.h cell.h
-	$(CC) boundary_conditions.c -c $(OPTFLAGS) $(DEBUGFLAGS)
+	$(CCOMP) boundary_conditions.c -c $(OPTFLAGS) $(DEBUGFLAGS) $(CFLAGS)
 
 cell.o: cell.c cell.h
-	$(CC) cell.c -c $(OPTFLAGS) $(DEBUGFLAGS)
+	$(CCOMP) cell.c -c $(OPTFLAGS) $(DEBUGFLAGS) $(CFLAGS)
 
 initial_conditions.o: initial_conditions.c cell.h initial_conditions.h
-	$(CC) initial_conditions.c -c $(OPTFLAGS) $(DEBUGFLAGS)
+	$(CCOMP) initial_conditions.c -c $(OPTFLAGS) $(DEBUGFLAGS) $(CFLAGS)
 
 io.o: io.c cell.h io.h
-	$(CC) io.c -c $(OPTFLAGS) $(DEBUGFLAGS)
+	$(CCOMP) io.c -c $(OPTFLAGS) $(DEBUGFLAGS) $(CFLAGS)
 
 solver.o: solver.c cell.h solver.h
-	$(CC) solver.c -c $(OPTFLAGS) $(DEBUGFLAGS)
+	$(CCOMP) solver.c -c $(OPTFLAGS) $(DEBUGFLAGS) $(CFLAGS)
 
 linear_advection: main.c cell.h initial_conditions.h io.h solver.h $(OBJ)
-	$(CC) main.c -o linear_advection $(OPTFLAGS) $(DEBUGFLAGS) $(OBJ)
+	$(CCOMP) main.c -o linear_advection $(OPTFLAGS) $(DEBUGFLAGS) $(OBJ) $(CFLAGS)
 
 .PHONY:
 	clean

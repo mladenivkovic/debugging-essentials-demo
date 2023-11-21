@@ -48,9 +48,6 @@ const int ncells = 10000;
 const int nghosts = 2;
 /*! Size of the box being simulated */
 const double boxsize = 2.;
-/*! size of a cell */
-const double dx = boxsize / (double) (ncells + 1);
-
 
 
 
@@ -58,6 +55,9 @@ int main(void){
 
   /* Total number of cells that we have in our global array */
   int ncells_tot = ncells + 2 * nghosts;
+
+  /* size of a cell */
+  const double dx = boxsize / ((double) (ncells + 1));
 
   /* First allocate a grid of cells */
   struct cell *cells = malloc(ncells_tot * sizeof(struct cell));

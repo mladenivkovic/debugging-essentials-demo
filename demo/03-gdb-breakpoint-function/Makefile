@@ -1,7 +1,7 @@
 
 
 ex: main.c
-	gcc main.c -o ex -g -Wall -Werror -pedantic
+	gcc main.c -o ex -g -Wall -Werror -pedantic -std=c11 
 
 
 clean:

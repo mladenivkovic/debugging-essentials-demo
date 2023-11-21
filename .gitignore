@@ -2,14 +2,10 @@
 **/compile_commands.json
 
 demo/*/ex
-demo/gdb-basics/ex1
-demo/gdb-FPE/ex2
-demo/gdb-segfault/ex3
-demo/gdb-optimization/ex4
-demo/gdb-core-dump/ex5
 demo/gdb-MPI/exMPI
-demo/valgrind/ex6
 
+core.*
+a.out
 *.o
 *.png
 *.dat

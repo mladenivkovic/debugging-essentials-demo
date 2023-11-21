@@ -119,7 +119,7 @@ program linear_advection
 
     ! Are we writing some log to the screen? */
     if (mod(step,delta_step_log) .eq. 0) then
-      write(*, '(A5,i6,A4,1x,ES13.6E2,1x,A4,ES12.6E2)') &
+      write(*, '(A5,i6,A4,1x,ES13.6E2,1x,A4,ES13.6E2)') &
         "Step ", step, "t=", t, "dt=", dt
     endif
 
@@ -144,7 +144,7 @@ program linear_advection
 
   ! Have we skipped writing a log to screen in the last step?
   if (mod((step-1),delta_step_log) .ne. 0) then
-    write(*, '(A5,i6,A4,1x,ES12.6E2,1x,A4,ES12.6E2)') &
+    write(*, '(A5,i6,A4,1x,ES13.6E2,1x,A4,ES13.6E2)') &
       "Step ", step, "t=", t, "dt=", dt
   endif
 

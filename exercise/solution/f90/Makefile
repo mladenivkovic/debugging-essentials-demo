@@ -4,9 +4,13 @@
 # 	gfortran	from the gcc compiler suite
 # 	ifort	 	intel fortran compiler
 # 	ifx  		intel oneAPI fortran compiler
+#
+# if you are working on DINE, you should first load a compiler module.
+# Then you should be able to pass the compiler as FCOMP=$(F90)
 
 # compiler executable name
-F90=gfortran
+FCOMP=$(F90)
+# FCOMP=gfortran
 
 # flags determining optimization
 OPTFLAGS= -O3 	# aggressive optimization
@@ -27,25 +31,25 @@ OBJ= params.o cell.o initial_conditions.o io.o boundary_conditions.o solver.o
 all: linear_advection 
 
 boundary_conditions.o: boundary_conditions.f90 params.o cell.o
-	$(F90) -c boundary_conditions.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
+	$(FCOMP) -c boundary_conditions.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
 
 cell.o: cell.f90 params.o
-	$(F90) -c cell.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
+	$(FCOMP) -c cell.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
 
 initial_conditions.o: initial_conditions.f90 params.o cell.o
-	$(F90) -c initial_conditions.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
+	$(FCOMP) -c initial_conditions.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
 
 io.o: io.f90 params.o cell.o
-	$(F90) -c io.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
+	$(FCOMP) -c io.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
 
 params.o: params.f90
-	$(F90) -c params.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
+	$(FCOMP) -c params.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
 
 solver.o: solver.f90 cell.o params.o
-	$(F90) -c solver.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
+	$(FCOMP) -c solver.f90 $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS)
 
 linear_advection: linear_advection.f90 $(OBJ)
-	$(F90) linear_advection.f90 -o linear_advection $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS) $(OBJ)
+	$(FCOMP) linear_advection.f90 -o linear_advection $(OPTFLAGS) $(DEBUGFLAGS) $(FORTRANFLAGS) $(OBJ)
 
 
 .PHONY:
