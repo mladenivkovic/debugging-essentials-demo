@@ -1,30 +1,26 @@
-/* To use feenableexcept() with gcc, you need to define the macro below first. */
+/* To use feenableexcept() with gcc, you need to define the macro below first.
+ * The function `feenableexcept()` is not standard C, but a GNU extension. */
 /* #define _GNU_SOURCE */
-/* With the intel icx compiler, you need to compile the program with the -fp-model=strict flag. */
-#include <fenv.h>
+/* #include <fenv.h> [> Make sure to link with -lm as well <] */
 #include <stdio.h>
 
-/**
- * A function that first recurses down a couple of
- * levels so we have something to look at in the
- * backtrace. Then produces an FPE at some point. */
-double some_recursive_function(int i, int depth){
 
-  if (depth >= 6) {
-    /* produce an FPE (divide by zero) at i == 800 */
-    double val = 123.456 / (i - 800);
-    return val;
-  }
-  else {
-    return some_recursive_function(i, depth+1);
-  }
+/** This produces a divide-by-zero FPE for i = 800. */
+double do_stuff(int i){
+  return 123.456 / (i - 800);
 }
 
 
 int main(void) {
 
   /* To pick and choose which type of FPE to raise: */
-  feenableexcept(FE_DIVBYZERO | FE_INEXACT | FE_INVALID | FE_OVERFLOW | FE_UNDERFLOW);
+  /* feenableexcept(FE_DIVBYZERO); */
+  /* Options are: (Combine through binary OR) */
+  /* feenableexcept(FE_DIVBYZERO |
+   *                FE_INEXACT |
+   *                FE_INVALID |
+   *                FE_OVERFLOW |
+   *                FE_UNDERFLOW); */
   /* Alternatively, just enable all: */
   /* feenableexcept(FE_ALL_EXCEPT); */
 
@@ -32,13 +28,14 @@ int main(void) {
 
   for (int i = 0; i < elements; i++){
 
-    double val = some_recursive_function(i, 0);
+    double val = do_stuff(i);
 
     if (i % 100 == 0)
       printf("%4d/%d, val=%g\n", i, elements, val);
 
   }
 
-
   return 0;
 }
+
+
