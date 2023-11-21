@@ -1,4 +1,5 @@
-Demo for gdb FPE stack trace
+11 Demo to catch FPEs
+=================================
 
 1) run program without gdb
 

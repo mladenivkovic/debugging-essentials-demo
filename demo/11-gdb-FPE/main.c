@@ -1,5 +1,7 @@
-#define _GNU_SOURCE /* for FPEs */
-#include <fenv.h>   /* for FPEs */
+/* To use feenableexcept() with gcc, you need to define the macro below first. */
+/* #define _GNU_SOURCE */
+/* With the intel icx compiler, you need to compile the program with the -fp-model=strict flag. */
+#include <fenv.h>
 #include <stdio.h>
 
 /**
@@ -21,8 +23,10 @@ double some_recursive_function(int i, int depth){
 
 int main(void) {
 
-  /* enables floating point exceptions */
-  feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW);
+  /* To pick and choose which type of FPE to raise: */
+  feenableexcept(FE_DIVBYZERO | FE_INEXACT | FE_INVALID | FE_OVERFLOW | FE_UNDERFLOW);
+  /* Alternatively, just enable all: */
+  /* feenableexcept(FE_ALL_EXCEPT); */
 
   const int elements = 1000;
 
