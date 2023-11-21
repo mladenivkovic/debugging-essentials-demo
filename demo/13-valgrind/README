@@ -1,0 +1,6 @@
+13 Demo Valgrind
+==========================
+
+1) Compile and run. Nothing should happen. (Segfault may happen)
+2) run with valgrind ./ex
+2) run with valgrind --leak-checks=full ./ex

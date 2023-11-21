@@ -13,12 +13,15 @@ int main(void){
 
   /* now do some useless thing with them */
   for (int i = 0; i < n; i++){
-    for (int j = 0; j < n; j++){
+    /* n+1: this is access out-of-bounds on purpose.
+     * May cause segfaults. */
+    for (int j = 0; j < n+1; j++){
       arr[i][j] = i*n + j;
     }
   }
 
   /* We "forget" to free some arrays now */
   free(arr);
+
 
 }
