@@ -7,11 +7,16 @@
 # 	clang LLVM C compiler
 #
 # if you are working on DINE, you should first load a compiler module.
-# Then you should be able to pass the compiler as CCOMP=$(CC)
+# Then you should be able to pass the compiler as CCOMP=$(CC).
+# This should work for the gnu and intel compilers. For LLVM, you'd need
+# to use CCOMP=clang.
 
 # compiler executable name
 CCOMP=$(CC) # should work on DINE
 # CCOMP=gcc
+# CCOMP=clang
+# CCOMP=icc
+# CCOMP=icx
 
 # flags determining optimization
 OPTFLAGS= -O3 	# aggressive optimization
