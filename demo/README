@@ -6,15 +6,3 @@ Small demo programs to showcase what gdb and valgrind etc can do.
 
 Instructions are inside each directory's README.
 
-Intended order of demonstrations:
-
-gdb-basics
-gdb-FPE
-gdb-segfault
-gdb-optimization
-gdb-core-dump
-gdb-MPI
-valgrind
-
-
-

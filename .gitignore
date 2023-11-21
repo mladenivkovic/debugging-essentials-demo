@@ -2,7 +2,7 @@
 **/compile_commands.json
 
 demo/*/ex
-demo/gdb-MPI/exMPI
+demo/12-gdb-MPI/exMPI
 
 core.*
 a.out
