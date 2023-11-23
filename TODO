@@ -1,3 +1,4 @@
-- show break infinite loop while it's running
+- show break infinite loop while it's running 
 - update READMEs to a state where new users can follow along
 - update ex 01 to contain finish, step, etc 
+- maybe add a second exercise version with more problems that aren't only memory related so people can play with it more. You used to have some more boundary condition issues.
