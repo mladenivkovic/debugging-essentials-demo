@@ -10,5 +10,5 @@ Contents:
 - `demo/` : small programs intended for live demo
 - `exercise/` : Small program intended for exercise. 
     Hunt down bugs in 1D linear advection code.
-
+- `slides/` : Slides used for presentations, workshops etc
 

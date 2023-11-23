@@ -1,3 +1,1 @@
-- show off FPE's separately
-- show off interesting backtraces/teach frames away from FPE's
 - show break infinite loop while it's running
