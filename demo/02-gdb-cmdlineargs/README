@@ -5,7 +5,7 @@
 
 2) Run program with gdb without --args.
 
-3) Run program with gdb without --args, but with cmdline args. Should crash.
+3) Run program in gdb with run --args a b c
 
 4) run program with gdb --args
 

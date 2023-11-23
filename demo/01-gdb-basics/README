@@ -1,13 +1,12 @@
-01 - Demo for gdb basics
-=============================
+01 gdb-basics
+=======================
 
-
-1) run program without gdb
-
-2) run program with gdb
+1) Show program contents
+2) MENTION DEBUG FLAGS
+3) run program without gdb
+4) run program with gdb
     show `run`
-
-3) make breakpoint at main.c:38
+5) make breakpoint at main.c:32
     bt
     list
     p i
@@ -20,7 +19,10 @@
     c
     info break
     del 1
+6) make breakpoint at includes/my_includes.h:14
 
-4) making breakpoint in other file:
-    make breakpoint at includes/my_includes.h:13
-    
+also possible: go through line by line with n, then
+step into do_stuff function with s
+then let function `finish`
+
+

@@ -2,10 +2,11 @@
 =======================
 
 1) Show program contents
-2) run program without gdb
-3) run program with gdb
+2) MENTION DEBUG FLAGS
+3) run program without gdb
+4) run program with gdb
     show `run`
-4) make breakpoint at main.c:33
+5) make breakpoint at main.c:32
     bt
     list
     p i
@@ -18,8 +19,11 @@
     c
     info break
     del 1
-5) make breakpoint at includes/my_includes.h:13
+6) make breakpoint at includes/my_includes.h:14
 
+also possible: go through line by line with n, then
+step into do_stuff function with s
+then let function `finish`
 
 
 02 gdb --args
@@ -27,7 +31,7 @@
 
 1) Show program. It crashes without cmdline args.
 2) Run program with gdb without --args.
-3) Run program with gdb without --args, but with cmdline args. Should crash.
+3) Run program in gdb with run --args a b c
 4) run program with gdb --args
 
 
@@ -70,7 +74,9 @@ NOTE: must turn off optimization.
 ==============================
 
 1) Show program
-2) Make watchpoint at sum
+2) Make watchpoint at sum: `watch sum`
+3) Show “in scope”: move declaration of `sum` into `main()`. Make breakpoint at `main()` first.
+
 
 
 
@@ -106,7 +112,7 @@ Run CONTENTS OF enable_core_dumps.sh first (script doesn't work)
 crash program
 load up core dump with gdb:
     - get path from get_coredump_path.sh
-    - gdb -c path/file ./ex5
+    - gdb -c path/file ./ex
 
 
 
