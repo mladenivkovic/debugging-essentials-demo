@@ -7,8 +7,8 @@
  * outside of array boundaries.
  * The commented out pragrma options are for gcc. See
  * bottom of the file for other compilers. */
-#pragma GCC push_options
-#pragma GCC optimize ("O0")
+/* #pragma GCC push_options */
+/* #pragma GCC optimize ("O0") */
 void assign_array_values(int *arr, const int elements){
 
   /* Loop over array indices which haven't been allocated
@@ -22,7 +22,7 @@ void assign_array_values(int *arr, const int elements){
 
   }
 }
-#pragma GCC pop_options
+/* #pragma GCC pop_options */
 
 
 
