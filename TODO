@@ -2,3 +2,47 @@
 - update READMEs to a state where new users can follow along
 - update ex 01 to contain finish, step, etc 
 - maybe add a second exercise version with more problems that aren't only memory related so people can play with it more. You used to have some more boundary condition issues.
+- Plan demos for a playalong with audience
+- Write down somewhere how to clone git repo. Full git clone command.
+- Mention that examples come along with a makefile.
+- Plan the hands-on session as the full afternoon, and the intro session with live demo and playalong as first session taking ~2h.
+- Think about how to close/demo how to debug the code live as a final/closing session after attendees had chance to do it themselves
+
+
+- Notes from Tobias in Slack, consider adding to Slides:
+
+In C, you can use
+__FILE__
+to get the file that you are using. So
+std::cout << _ _FILE_ _
+dumps the file of this line and you don't have to write stuff manually.
+
+Along the same lines _ _ LINE __  gives you the line number.
+
+After these first 60 min or so on "from the dance floor", i.e. experiences how other people test, we'll switch to gdb. So right now, we see how people alter their code. At the end, you want to know where bugs come from. For this, you have to plug into your running code and find the location where things go wrong. That's what we'll do later.
+
+While, in theory, a test-first approach is the way to go ("test first"), in practice we are given code and have to debug it.
+
+Often, people then start to find out where things go wrong. Then, they work backwards, i.e. insert debug statements and finally write tests to validate that what they've done is correct.
+
+In modern software engineering, this is not recommended. Instead, the recommendation is:
+- Locate bug (as we will see it in around 30 min).
+- Write a test first that documents this code.
+- Fix bug (and add docu and logging).
+- Check that unit test passes.
+- Check that regression tests all pass.
+
+If you introduce your own debug flags, you have to compile with
+-DDEBUG_LEVEL=5
+for example.
+
+So you type in
+gcc -DDEBUG_LEVEL=5
+and then
+#if DEBUG_LEVEL>1
+will be valid. If you compile a release code later on, you translate with
+gcc -DDEBUG_LEVEL=0
+(or no flag at all). The compiler(!) will then remove all the check code, i.e. you won't pay for it in terms of runtime.
+
+This last example (sanitizer) is again an outlook to next week, where we will have a lot of details around such compiler checks.
+Please note that the sanitizer delivers false positives quite frequently. Again, something we will discuss next week en detail.
