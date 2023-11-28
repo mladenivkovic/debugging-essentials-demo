@@ -29,4 +29,5 @@ done
 cd ..
 
 rm `find . -name compile_commands.json`
+rm `find . -name "output_*"`
 
