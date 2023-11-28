@@ -1,3 +1,8 @@
+12 GDB + MPI
+========================
+
+!!!!!!!! TODO: Write full instructions.
+
 Just use run.sh and show how gdb can be used with MPI
 
 First show contents of main.c

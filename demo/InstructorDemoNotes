@@ -51,6 +51,7 @@ Particularly useful if you have a function to handle exits in your program.
 
 1) Show program
 2) Make breakpoint at main.c:10 if i==5
+3) Make breakpoint at main.c:10 if i==5 && sum < 45
 
 
 

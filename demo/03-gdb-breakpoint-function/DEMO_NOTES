@@ -1,9 +1,0 @@
-03 - Set breakpoint at a function
-=====================================
-
-Particularly useful if you have a function to handle exits in your program.
-
-1) Show program. We call function when error occurs.
-2) Make breakpoint at error.h:error_exit
-
-    

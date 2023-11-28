@@ -1,6 +1,0 @@
-14 Demo address sanitizer
-==========================
-
-1) Compile and run. 
-2) Fix out-of-bounds access. Run again.
-3) Show memory leak detected.

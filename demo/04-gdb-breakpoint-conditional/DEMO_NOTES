@@ -1,7 +1,0 @@
-04 Demo for breakpoint with conditional
-=============================================
-
-1) Show program
-
-2) Make breakpoint at main.c:10 if i==5
-

@@ -1,9 +1,0 @@
-06 Demo Watchpoint 
-==============================
-
-1) Show program
-2) Make watchpoint at sum: `watch sum`
-3) Show “in scope”: move declaration of `sum` into `main()`. Make breakpoint at `main()` first.
-
-
-

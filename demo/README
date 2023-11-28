@@ -1,16 +1,41 @@
 Debugging Essentials Demo
--------------------------
+=========================
+
 
 Small demo programs to showcase what gdb and valgrind etc can do.
 
-Instructions are inside each directory's README.
+Each directory should contain at least the following files:
+
+    - main.c
+        main program file
+
+    - Makefile
+        a makefile for GNU's make system. 
+
+    - INSTRUCTIONS.txt
+        A list of instructions to follow along and use the examples,
+        as intended for the live demo.
+        This file may be missing if a file INSTRUCTIONS_SHORT.txt exists.
+        This is the case for examples where the "short" version of the demo
+        is identical to the "long" version.
+
+    - DEMO_NOTES
+        Shortened, uncommented version of instructions, intended for
+        whoever is demonstrating the topic, not for attendees.
+
+
+Some directories may contain additional files.
+        
+        
+
+Instructions are inside each directory's `INSTRUCTIONS.txt` file.
 
 To compile the programs, you can either use the provided Makefiles by running
 `make` inside the directory. The Makefiles use gcc to compile the programs.
 Alternatively, you can compile them any way you prefer. Just don't forget to
 pass the `-g` debugging flag to your compiler.
 
-For a shorter demo (~1h with talk/lecture/slides), use README_SHORT.txt in
+For a shorter demo (~1h with talk/lecture/slides), use `INSTRUCTIONS_SHORT.txt` in
 example directories.
 The examples for the short version are:
 
@@ -24,4 +49,5 @@ The examples for the short version are:
 - 11-gdb-FPE
 - 13-valgrind
 - 14-address-sanitizer
+
 

@@ -1,6 +1,8 @@
 10 GDB optimization
 ===========================
 
+!!!!!!!! TODO: Write full instructions.
+
 same as demo for gdb segfault backtrace, 
 1) moved for loop into function
 2) added optimization flag -O3

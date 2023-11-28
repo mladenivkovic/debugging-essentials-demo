@@ -1,9 +1,0 @@
-11 Demo to catch FPEs
-=================================
-
-1) run program without gdb
-2) activate stuff to get FPEs to cause errors (define and include in header, feenableexcept)
-3) run again without gdb
-4) run again with gdb
-
-

@@ -1,6 +1,8 @@
 05 Demo for gdb with reverse
 ==============================
 
+!!!!!!!! TODO: Write full instructions.
+
 1) Show program
 
 2) Make breakpoint at main.c:6 and main.c:12

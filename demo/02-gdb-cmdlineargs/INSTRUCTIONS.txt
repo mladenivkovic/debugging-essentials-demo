@@ -1,6 +1,8 @@
 02 - Demo Command Line Arguments
 =====================================
 
+TODO: Write full instructions.
+
 1) Show program. It crashes without cmdline args.
 
 2) Run program with gdb without --args.

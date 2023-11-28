@@ -1,9 +1,0 @@
-08 Demo for gdb segfault
-=============================
-
-1) run program without gdb
-
-2) run program with gdb
-   run
-   backtrace
-
