@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* This is the same program as in example 08-gdb-segfault */
+
 int main(void) {
 
   const int elements = 10000000;

@@ -15,7 +15,7 @@ int main(void){
   for (int i = 0; i < n; i++){
     /* n+1: this is access out-of-bounds on purpose.
      * May cause segfaults. */
-    for (int j = 0; j < n+1; j++){
+    for (int j = 0; j < n; j++){
       arr[i][j] = i*n + j;
     }
   }

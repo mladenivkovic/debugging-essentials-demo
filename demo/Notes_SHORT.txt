@@ -1,0 +1,129 @@
+01 gdb-basics
+=======================
+
+1   Look through the source code of the program.
+
+2   Don't forget to compile with the debug flags! Point them out on the compile
+    command. To compile the code, run `make`, or the full compilation command
+    manually, e.g.
+    $ make
+
+    or
+
+    $ gcc main.c -o ex -g -lm
+
+3   run the program without gdb, see what the output is:
+    $ ./ex
+
+4   run program with gdb:
+    $ gdb ./ex
+
+4.1 to start the run, execute
+    (gdb) run
+
+5   Once the run is complete, we restart it by running `run` again. But first, we
+    make a breakpoint at line 32 in file main.c: (gdb) break main.c:32
+
+5.1 Now run the program again:
+    (gdb) run
+
+5.2 The program stops at the breakpoint we set. Use:
+    (gdb) bt
+    to show the backtrace, and where you currently are.
+
+5.3 Run 
+    (gdb) list
+    to show the source code at your current location.
+    Alternatively, just run `l` instead of `list`. It's the same.
+
+5.3.1   Run `list` again to continue scrolling down the source file.
+
+5.3.2   Run
+
+        (gdb) list 10
+
+        to show the source file starting with line 10.
+
+5.3.3   Run `list` again to continue scrolling down the source file.
+
+HINT: In gdb, if you hit `Enter` without typing in a command, it will execute
+      the last command again.
+      In this instance, just hitting `Enter` will keep you scrolling through
+      the source file.
+
+6   Print out some variables. E.g. value of `i`:
+    (gdb) p i
+
+6.1 You can do some simple maths:
+    (gdb) p i + 1
+    (gdb) p i + 1 + 2 * i
+    
+6.2 You can print arrays
+6.2.1   Memory address array points to:
+    (gdb) p arr
+6.2.2   Individual array elements:
+    (gbb) p arr
+6.3 You can print out objects and structures
+    (gdb) p st
+
+7   Let gdb execute the code line-by-line using `next` or `n` once the execution
+    is halted.
+    (gdb) n
+
+8   Once you're done inspecting a breakpoint, you can continue the run using
+    `continue` or `c`
+    (gdb) continue
+
+    It will continue until it crashes, finishes, or hits another breakpoint.
+    In our case, it will hit the breakpoint again.
+
+9   Once you're done with a breakpoint, you can delete it so the continued
+    execution doesn't halt there any longer.
+    First find out the ID of your breakpoint using `info break`:
+    (gdb) info break
+
+    In our case, it's `1`. To delete it, we can use
+
+    (gdb) del 1
+
+9.1 Now continue the run using `c`. It should finish.
+
+10  Make a new breakpoint in a different file by providing the full file path:
+    (gdb) break includes/my_includes.h:14
+
+
+
+04 Demo for breakpoint with conditional
+=============================================
+
+1   Look through the source code of the program.
+
+2   Don't forget to compile with the debug flags! Point them out on the compile
+    command. To compile the code, run `make`, or the full compilation command
+    manually, e.g.
+    $ make
+
+    or
+
+    $ gcc main.c -o ex -g -lm
+
+3   run the program with gdb:
+    $ gdb ./ex
+
+4   We now make a *conditional* breakpoint at line 10:
+    (gdb) break main.c:10 if i==5
+
+5   Run the program with `run`:
+    (gdb) run
+
+    It should run until the breakpoint is hit.
+
+5.1 Verify that the condition is satisfied by printing out `i`:
+    (gdb) p i
+
+6   Since this is a C program, we can use the usual C boolean operations.
+    For example, our condition could be:
+
+    (gdb) break main.c:10 if i==5 && sum < 25
+
+

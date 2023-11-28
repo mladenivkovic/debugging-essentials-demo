@@ -1,8 +1,27 @@
 Debugging Essentials Demo
 -------------------------
 
-
 Small demo programs to showcase what gdb and valgrind etc can do.
 
 Instructions are inside each directory's README.
+
+To compile the programs, you can either use the provided Makefiles by running
+`make` inside the directory. The Makefiles use gcc to compile the programs.
+Alternatively, you can compile them any way you prefer. Just don't forget to
+pass the `-g` debugging flag to your compiler.
+
+For a shorter demo (~1h with talk/lecture/slides), use README_SHORT.txt in
+example directories.
+The examples for the short version are:
+
+- 01-gdb-basics
+- 03-gdb-breakpoint-function
+- 04-gdb-breakpoint-conditional
+- 06-gdb-watchpoint
+- 07-gdb-frames
+- 08-gdb-segfault
+- 09-gdb-core-dump
+- 11-gdb-FPE
+- 13-valgrind
+- 14-address-sanitizer
 
