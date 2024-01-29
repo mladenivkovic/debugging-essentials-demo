@@ -1,0 +1,298 @@
+\documentclass[10pt, a4paper, english, parskip, twocolumn]{scrartcl}
+
+\usepackage{color, graphicx, float}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{geometry}
+\geometry{margin=1.5cm}
+
+\usepackage[document]{ragged2e}
+\usepackage{listings}
+
+\lstdefinestyle{myCodeStyle}{
+    backgroundcolor=\color{ashgrey!20},
+%     commentstyle=\color{codegreen},
+%     keywordstyle=\color{magenta},
+%     numberstyle=\tiny\color{codegray},
+%     stringstyle=\color{codepurple},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=none,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=myCodeStyle}
+
+
+
+%-----------------------------------------------
+% FORMAT TITLE
+%-----------------------------------------------
+
+% Set fonts of document parts
+\setkomafont{title}{\rmfamily\bfseries\boldmath}
+\addtokomafont{section}{\rmfamily\bfseries\boldmath}
+\addtokomafont{subsection}{\rmfamily\bfseries\boldmath}
+\addtokomafont{subsubsection}{\rmfamily\bfseries\boldmath}
+\addtokomafont{disposition}{\rmfamily} % table of contents and stuff
+\setkomafont{descriptionlabel}{\rmfamily\bfseries\boldmath}
+
+
+
+
+
+
+%-----------------------------------------------
+% TEXT IN BOXES
+%-----------------------------------------------
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+% New Colors (needs to be after usepackage mdframed)
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}
+\definecolor{caribbeangreen}{rgb}{0.0, 0.8, 0.6}
+\definecolor{bittersweet}{rgb}{1.0, 0.44, 0.37}
+
+\mdfdefinestyle{section}{%
+       %rightline=true,
+       innerleftmargin=10,
+       innerrightmargin=10,
+       frametitlerule=false,
+%        frametitlerulecolor=black,
+%        frametitlerulewidth=2
+}
+
+
+
+
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\ddash}{-{}-}
+\newcommand{\gdbsection}[1]{\begin{mdframed}[frametitlebackgroundcolor=bittersweet,style=section,
+frametitle=#1]\end{mdframed}}
+
+
+
+\pagestyle{empty}
+
+
+\begin{document}
+	
+
+\section*{gdb Debugging Cheatsheet}
+
+
+
+
+\gdbsection{running gdb}
+
+Remember to compile your program with debugging symbols enabled!
+That's usually the \code{-g} or \code{-ggdb} flag.
+
+Running your executable with \code{gdb}:
+%
+\begin{lstlisting}[belowskip=0pt]
+$ gdb /path/to/your/executable
+\end{lstlisting}
+%
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ gdb --args /path/to/your/executable --arg1 --arg2
+\end{lstlisting}
+%
+\quad\quad If your executable requires command line \\
+\quad\quad arguments (\code{\ddash arg1 \ddash arg2})
+
+
+
+
+
+
+
+\gdbsection{gdb basic commands}
+%
+{\renewcommand{\arraystretch}{1.15}%
+% \small%
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{p{2.8cm}p{5.4cm}}
+\code{r (run)}          & run the program \code{gdb} loaded \\
+\code{c (continue)}     & continue run\\
+\code{n (next)}         & execute next line\\
+\code{s (step)}         & execute next step\\
+\code{finish}           & after a breakpoint, run function until end and halt there\\[1em]
+%
+\code{l (list)}         & show source code at current loc\\
+\code{l <lnr>}          & show source code at line <lnr>\\
+\code{tui enable}       & start a fancy Text User Interface\\[1em]
+%
+\code{p (print) <var>}  & print variable <var>\\
+\code{p *<var\_p>}      & print value of pointer <var\_p> instead of address\\
+\code{display <var>}    & print variable <var> every time it is touched throughout the run\\
+\code{info locals}      & print all local variables\\[1em]
+%
+\code{b (break) <loc>}  & set a breakpoint at <loc>\\
+\code{tbreak <loc>}     & set a temporary breakpt at <loc>\\
+\code{watch <var>}      & set a watchpoint at var <var>\\[1em]
+%
+\code{bt (backtrace)}   & show stack trace\\
+\code{where}            & show current location in trace\\
+\code{frame}            & show current location in trace\\
+\code{frame <nr>}       & change into frame <nr>
+\end{tabular}
+\end{center}
+\end{table}
+}
+
+
+
+
+
+
+
+\gdbsection{gdb and MPI}
+
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ mpirun -n 4 xterm -e gdb -ex run your_program
+\end{lstlisting}
+\quad\quad Runs 4 \code{xterm} terminals with \code{MPI} and\\
+\quad\quad executes your program through \code{gdb}
+
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ mpirun -n 4 xterm -e gdb -ex
+    run --args your_program --arg1 --arg2
+\end{lstlisting}
+\quad\quad same as above, but allows your program to \\
+\quad\quad read in command line arguments
+
+
+
+
+
+
+
+\gdbsection{gdb and core dumps}
+
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ ulimit -S -c unlimited
+\end{lstlisting}
+\quad\quad To enable core dumps on linux
+
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ coredump
+\end{lstlisting}
+\quad\quad Command shows you where cores will be \\
+\quad\quad dumped on your system
+
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ gdb -c core.XXXX path/to/executable
+\end{lstlisting}
+\quad\quad Load core dump with \code{gdb}
+
+
+
+
+
+
+
+
+
+\gdbsection{gdb breakpoints}
+
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+break <line number in main file>
+\end{lstlisting}
+%
+\quad To set a breakpoint (\textit{before} you execute \code{run})
+%
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+break path/to/file.c:<line_nr>
+\end{lstlisting}
+\quad To set a breakpoint on <line\_nr> in specific file
+%
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+break file.c:function_name
+\end{lstlisting}
+\quad To break when a function is called in \code{file.c}
+%
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+tbreak <loc>
+\end{lstlisting}
+\quad Make temporary breakpoint that deletes itself after \\
+\quad it gets hit once
+%
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+info break
+\end{lstlisting}
+\quad show info on currently set \code{breakpoints}
+%
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+del <brnr>
+\end{lstlisting}
+\quad delete \code{breakpoint} <brnr> (find <brnr>\\
+\quad using \code{info break})
+%
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+disable/enable <brnr>
+\end{lstlisting}
+\quad disable/enable \code{breakpoint} <brnr> (skip or don't skip \\
+\quad it without deleting it)
+%
+
+
+
+
+
+
+
+
+
+\gdbsection{gdb and ``value has been optimized out''}
+
+Either recompile your program without optimization, or tell compiler not to optimize specific
+function you're looking at. Doing that depends on the compiler.
+
+
+For \code{GCC}:
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+
+  void your_function(){...}
+
+#pragma GCC pop_options
+\end{lstlisting}
+%
+
+For \code{intel}:
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+#pragma optimize( "", off )
+
+  void your_function() {...}
+
+#pragma optimize( "", on )
+\end{lstlisting}
+\quad\quad or
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+#pragma intel optimization_level 0
+	void your_funtction(){...}
+\end{lstlisting}
+%
+
+For \code{clang}:
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+__attribute__((optnone))
+	void your_function()
+    {...}
+\end{lstlisting}
+
+
+
+\end{document}
