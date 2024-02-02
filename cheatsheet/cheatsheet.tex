@@ -85,7 +85,7 @@ frametitle=#1]\end{mdframed}}
 
 
 \begin{document}
-	
+
 
 \section*{gdb Debugging Cheatsheet}
 
@@ -104,7 +104,8 @@ $ gdb /path/to/your/executable
 \end{lstlisting}
 %
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
-$ gdb --args /path/to/your/executable --arg1 --arg2
+$ gdb --args /path/to/your/executable \
+  --arg1 --arg2
 \end{lstlisting}
 %
 \quad\quad If your executable requires command line \\
@@ -130,22 +131,22 @@ $ gdb --args /path/to/your/executable --arg1 --arg2
 \code{finish}           & after a breakpoint, run function until end and halt there\\[1em]
 %
 \code{l (list)}         & show source code at current loc\\
-\code{l <lnr>}          & show source code at line <lnr>\\
+\code{l <lnr>}          & show source code at line $<$lnr$>$\\
 \code{tui enable}       & start a fancy Text User Interface\\[1em]
 %
-\code{p (print) <var>}  & print variable <var>\\
-\code{p *<var\_p>}      & print value of pointer <var\_p> instead of address\\
-\code{display <var>}    & print variable <var> every time it is touched throughout the run\\
+\code{p (print) <var>}  & print variable $<$var$>$\\
+\code{p *<var\_p>}      & print value of pointer $<$var\_p$>$ instead of address\\
+\code{display <var>}    & print variable $<$var$>$ every time it is touched throughout the run\\
 \code{info locals}      & print all local variables\\[1em]
 %
-\code{b (break) <loc>}  & set a breakpoint at <loc>\\
-\code{tbreak <loc>}     & set a temporary breakpt at <loc>\\
-\code{watch <var>}      & set a watchpoint at var <var>\\[1em]
+\code{b (break) <loc>}  & set a breakpoint at $<$loc$>$\\
+\code{tbreak <loc>}     & set a temporary breakpt at $<$loc$>$\\
+\code{watch <var>}      & set a watchpoint at var $<$var$>$\\[1em]
 %
 \code{bt (backtrace)}   & show stack trace\\
 \code{where}            & show current location in trace\\
 \code{frame}            & show current location in trace\\
-\code{frame <nr>}       & change into frame <nr>
+\code{frame <nr>}       & change into frame $<$nr$>$
 \end{tabular}
 \end{center}
 \end{table}
@@ -160,14 +161,15 @@ $ gdb --args /path/to/your/executable --arg1 --arg2
 \gdbsection{gdb and MPI}
 
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
-$ mpirun -n 4 xterm -e gdb -ex run your_program
+$ mpirun -n 4 xterm -e gdb -ex \
+  run your_program
 \end{lstlisting}
 \quad\quad Runs 4 \code{xterm} terminals with \code{MPI} and\\
 \quad\quad executes your program through \code{gdb}
 
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
-$ mpirun -n 4 xterm -e gdb -ex
-    run --args your_program --arg1 --arg2
+$ mpirun -n 4 xterm -e gdb -ex \
+  run --args your_program --arg1 --arg2
 \end{lstlisting}
 \quad\quad same as above, but allows your program to \\
 \quad\quad read in command line arguments
@@ -215,7 +217,7 @@ break <line number in main file>
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 break path/to/file.c:<line_nr>
 \end{lstlisting}
-\quad To set a breakpoint on <line\_nr> in specific file
+\quad To set a breakpoint on $<$line\_nr$>$ in specific file
 %
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 break file.c:function_name
@@ -236,13 +238,13 @@ info break
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 del <brnr>
 \end{lstlisting}
-\quad delete \code{breakpoint} <brnr> (find <brnr>\\
+\quad delete \code{breakpoint} $<$brnr$>$ (find $<$brnr$>$\\
 \quad using \code{info break})
 %
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 disable/enable <brnr>
 \end{lstlisting}
-\quad disable/enable \code{breakpoint} <brnr> (skip or don't skip \\
+\quad disable/enable \code{breakpoint} $<$brnr$>$ (skip or don't skip \\
 \quad it without deleting it)
 %
 
@@ -289,8 +291,7 @@ For \code{intel}:
 For \code{clang}:
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 __attribute__((optnone))
-	void your_function()
-    {...}
+	void your_function(){...}
 \end{lstlisting}
 
 
