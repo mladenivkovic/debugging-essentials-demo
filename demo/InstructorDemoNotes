@@ -6,7 +6,7 @@ For fully written-out instructions, see `INSTRUCTIONS.txt` inside each example's
 Github repository link for easy copy-paste into chat:
 
 https://github.com/mladenivkovic/debugging-essentials-demo
-
+$ git clone git@github.com:mladenivkovic/debugging-essentials-demo.git
 
 
 
