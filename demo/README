@@ -15,13 +15,6 @@ Each directory should contain at least the following files:
     - INSTRUCTIONS.txt
         A list of instructions to follow along and use the examples,
         as intended for the live demo.
-        This file may be missing if a file INSTRUCTIONS_SHORT.txt exists.
-        This is the case for examples where the "short" version of the demo
-        is identical to the "long" version.
-
-    - DEMO_NOTES
-        Shortened, uncommented version of instructions, intended for
-        whoever is demonstrating the topic, not for attendees.
 
 
 Some directories may contain additional files.
@@ -35,9 +28,7 @@ To compile the programs, you can either use the provided Makefiles by running
 Alternatively, you can compile them any way you prefer. Just don't forget to
 pass the `-g` debugging flag to your compiler.
 
-For a shorter demo (~1h with talk/lecture/slides), use `INSTRUCTIONS_SHORT.txt` in
-example directories.
-The examples for the short version are:
+For a shorter demo (~1h with talk/lecture/slides), I used the following examples:
 
 - 01-gdb-basics
 - 03-gdb-breakpoint-function

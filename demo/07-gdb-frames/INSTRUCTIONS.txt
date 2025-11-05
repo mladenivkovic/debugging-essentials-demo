@@ -17,7 +17,7 @@
 
         $ gdb ./ex
 
-4   We now make a breakpoint at line 6:
+4   We now make a breakpoint at line 6: (Deep in the stack)
 
         (gdb) break main.c:6
 

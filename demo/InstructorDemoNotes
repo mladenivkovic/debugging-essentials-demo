@@ -1,8 +1,20 @@
+Instructor Demo Notes
+===========================
+
+Shorthand notes to use while demonstrating the examples.
+For fully written-out instructions, see `INSTRUCTIONS.txt` inside each example's directory.
+Github repository link for easy copy-paste into chat:
+
+https://github.com/mladenivkovic/debugging-essentials-demo
+
+
+
+
 01 gdb-basics
-=======================
+===================================
 
 1) Show program contents
-2) MENTION DEBUG FLAGS
+2) MENTION DEBUG FLAG
 3) run program without gdb
 4) run program with gdb
     show `run`
@@ -15,43 +27,60 @@
     p arr[i]
     p arr
     p st
+    p sin(2.3)
+    p do_stuff(&arr[i], i, &st)
     n
     c
     info break
     del 1
-6) make breakpoint at includes/my_includes.h:14
+    c
+6) make breakpoint at
+ includes/my_includes.h:14
 
 also possible: go through line by line with n, then
 step into do_stuff function with s
 then let function `finish`
 
 
+
+
 02 gdb --args
-========================
+===================================
 
 1) Show program. It crashes without cmdline args.
 2) Run program with gdb without --args.
-3) Run program in gdb with run --args a b c
-4) run program with gdb --args
+3) run inside gdb with `run --args a b c` 
+4) run program with gdb –args ./ex a b c
+
+
 
 
 
 03 Set breakpoint at a function
-=====================================
+===================================
 
 Particularly useful if you have a function to handle exits in your program.
 
 1) Show program. We call function when error occurs.
 2) Make breakpoint at error.h:error_exit
+NOTE: no parentheses, just function name!
 
 
 
-04 Demo for breakpoint with conditional
-========================================
+
+
+
+04 Demo for conditional breakpoint
+===================================
 
 1) Show program
 2) Make breakpoint at main.c:10 if i==5
-3) Make breakpoint at main.c:10 if i==5 && sum < 45
+2.1) show info break
+3) Since this is a C program, we can use the usual C boolean operations: 
+	break main.c:10 if i==5 && sum < 25
+
+
+
 
 
 
@@ -66,23 +95,26 @@ NOTE: must turn off optimization.
 
 2.1) First breakpoint: `record`
 2.2) reverse-step
+2.3) reverse-continue
+2.4) continue/step/next to go forwards in time
 
- 
+
 
 
 
 06 Demo Watchpoint 
-==============================
+===========================
 
 1) Show program
-2) Make watchpoint at sum: `watch sum`
-3) Show “in scope”: move declaration of `sum` into `main()`. Make breakpoint at `main()` first.
+2) Make watchpoint at sum: watch sum
+3) Show “in scope”: Make breakpoint at main, then watch sum2
+
 
 
 
 
 07 Demo GDB Frames Navigation
-==============================
+===========================
 
 1) Show program
 2) break at main.c:6
@@ -91,19 +123,24 @@ NOTE: must turn off optimization.
 
 
 
-08 Demo for gdb segfault
-=============================
 
-1) run program without gdb
-2) run program with gdb
+
+08 Demo for gdb segfault
+===========================
+
+1) Show program. We’re producing a segfault by writing way out of array bounds.
+2) run program without gdb
+3) run program with gdb
    run
    backtrace
+   This is the big magic of gdb!
+
 
 
 
 
 09 GDB Core Dumps
-=============================
+===========================
 
 Same as demo for gdb segfault
 
@@ -111,9 +148,19 @@ Run CONTENTS OF disable_core_dumps.sh first (script doesn't work)
 crash program
 Run CONTENTS OF enable_core_dumps.sh first (script doesn't work)
 crash program
+show coredump list: 
+  `coredumpctl list -r`
+show details of last entry: 
+  `coredumpctl info`
+grab coredump location from “Storage” line of `coredumpctl info`
+Version 1: 
+  `coredumpctl debug`
+Version 2: 
+  Create dump with 
+  `coredumpctl dump --output core.out`
 load up core dump with gdb:
-    - get path from get_coredump_path.sh
-    - gdb -c path/file ./ex
+   gdb -c path/file ./ex
+
 
 
 
@@ -123,15 +170,15 @@ load up core dump with gdb:
 same as demo for gdb segfault backtrace, 
 1) moved for loop into function
 2) added optimization flag -O3
+3) Show that values can be optimized out: arr
+4) Disable optimisation: Compile with -O0 instead
+5) Show that single function can have optimization turned off: Uncomment lines in main.c
 
-Show that values can be optimized out
-
-Idea: Show that single function can have optimization turned off
 
 
 
 11 Demo to catch FPEs
-=================================
+===========================
 
 1) run program without gdb
 2) activate stuff to get FPEs to cause errors (define and include in header, feenableexcept)
@@ -140,18 +187,18 @@ Idea: Show that single function can have optimization turned off
 
 
 
-
-
 12 gdb-MPI
-===============================
+===========================
 
-First show contents of main.c
+First show contents of main.c: print “Hello” from each rank once per second
 Rank 2 should crash after 20s
+Run (contents of) run.sh
+
 
 
 
 13 Demo Valgrind
-==========================
+===========================
 
 1) Compile and run. Nothing should happen. (Segfault may happen)
 2) run with valgrind ./ex
@@ -159,11 +206,11 @@ Rank 2 should crash after 20s
 
 
 
+
 14 Demo address sanitizer
-==========================
+===========================
 
 1) Compile and run. 
 2) Fix out-of-bounds access. Run again.
 3) Show memory leak detected.
-
 

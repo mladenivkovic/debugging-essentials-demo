@@ -1,15 +1,48 @@
 05 Demo for gdb with reverse
 ==============================
 
-!!!!!!!! TODO: Write full instructions.
+1   Look through the source code of the program.
 
-1) Show program
+2   Don't forget to compile with the debug flags! Point them out on the compile
+    command. To compile the code, run `make`, or the full compilation command
+    manually, e.g.
 
-2) Make breakpoint at main.c:6 and main.c:12
+        $ make
 
-NOTE: must turn off optimization.
+    or
 
-2.1) First breakpoint: `record`
-2.2) reverse-step
+        $ gcc main.c -o ex -g -lm -O0
 
+    NOTE: we must turn off optimization for this to work. (-O0 flag)
+
+3   run the program with gdb:
+
+        $ gdb ./ex
+
+4   Make breakpoint at main.c:6 and main.c:12
+
+        (gdb) break main.c:6
+        (gdb) break mainc:12
+
+5   Run the program
+
+        (gdb) run
+
+6   Once the first breakpoint is hit, start recording and continue the run:
+
+        (gdb) record
+        (gdb) continue
+
+7   Once the second breakpoint is hit, we can now walk the program back in reverse
+
+7.1 Go back a single line:
+
+        (gdb) reverse-step
+
+7.2 Go back until start of recording:
+
+        (gdb) reverse-continue
+
+    You can still use `next` or `step` or `continue` to proceed forwards
+    in time with the execution.
     

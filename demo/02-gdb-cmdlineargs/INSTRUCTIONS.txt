@@ -1,14 +1,37 @@
 02 - Demo Command Line Arguments
 =====================================
 
-TODO: Write full instructions.
+1	  Look through the source code of the program.
 
-1) Show program. It crashes without cmdline args.
+2   Compile and Run the program:
 
-2) Run program with gdb without --args.
+    $ make
+    $ ./ex
 
-3) Run program in gdb with run --args a b c
+2.1 It crashes if we don't provide a command line argument, like so:
 
-4) run program with gdb --args
+    $ ./ex some_argument some_other_argument
 
+3   Run program with gdb without --args: It will still crash.
+
+    $ gdb ./ex 
+    (gdb) run
+
+    $ gdb ./ex 1 2 3 4
+    (gdb) run
+
+4   Now Telling gdb that our program takes cmdline args:
+4.1 Run program inside gdb with `run --args a b c`
+
+    $ gdb ./ex 
+    (gdb) run --args 1 2 3 4
+
+    This works!
+
+4.2 run program with gdb --args
+
+    $ gdb --args ./ex 1 2 3 4 
+    (gdb) run 
     
+    This works too!
+

@@ -1,11 +1,9 @@
 01 gdb-basics
 =======================
 
-TODO: FINISH THIS!!! This is still the short version only. Check ../InstructorNotes for diff.
+1	  Look through the source code of the program.
 
-1	Look through the source code of the program.
-
-2	Don't forget to compile with the debug flags! Point them out on the compile
+2	  Don't forget to compile with the debug flags! Point them out on the compile
 	command. To compile the code, run `make`, or the full compilation command
 	manually, e.g.
 
@@ -15,11 +13,11 @@ TODO: FINISH THIS!!! This is still the short version only. Check ../InstructorNo
 
 		$ gcc main.c -o ex -g -lm
 
-3	run the program without gdb, see what the output is:
+3	  run the program without gdb, see what the output is:
 
 		$ ./ex
 
-4	run program with gdb:
+4	  run program with gdb:
 
 		$ gdb ./ex
 
@@ -27,8 +25,8 @@ TODO: FINISH THIS!!! This is still the short version only. Check ../InstructorNo
 
 		(gdb) run
 
-5	Once the run is complete, we restart it by running `run` again. But first, we
-	make a breakpoint at line 32 in file main.c: 
+5	  Once the run is complete, we restart it by running `run` again. But first,
+    we make a breakpoint at line 32 in file main.c: 
 
 		(gdb) break main.c:32
 
@@ -40,14 +38,14 @@ TODO: FINISH THIS!!! This is still the short version only. Check ../InstructorNo
 
 		(gdb) bt
 
-	to show the backtrace, and where you currently are.
+	  to show the backtrace, and where you currently are.
 
 5.3 Run 
 
 		(gdb) list
 
-	to show the source code at your current location.
-	Alternatively, just run `l` instead of `list`. It's the same.
+	  to show the source code at your current location.
+	  Alternatively, just run `l` instead of `list`. It's the same.
 
 5.3.1	Run `list` again to continue scrolling down the source file.
 
@@ -87,26 +85,31 @@ HINT: In gdb, if you hit `Enter` without typing in a command, it will execute
 
 		(gdb) p st
 
-7	Let gdb execute the code line-by-line using `next` or `n` once the execution
-	is halted.
+6.4 You can print out return results of functions
+
+    (gdb) p sin(2.3)
+    (gdb) p do_stuff(&arr[i], i, &st)
+
+7	  Let gdb execute the code line-by-line using `next` or `n` once the execution
+    is halted.
 
 		(gdb) n
 
-8	Once you're done inspecting a breakpoint, you can continue the run using
-	`continue` or `c`
+8	  Once you're done inspecting a breakpoint, you can continue the run using
+    `continue` or `c`
 
 		(gdb) continue
 
-	It will continue until it crashes, finishes, or hits another breakpoint.
-	In our case, it will hit the breakpoint again.
+    It will continue until it crashes, finishes, or hits another breakpoint.
+    In our case, it will hit the breakpoint again.
 
-9	Once you're done with a breakpoint, you can delete it so the continued
-	execution doesn't halt there any longer.
-	First find out the ID of your breakpoint using `info break`:
+9	  Once you're done with a breakpoint, you can delete it so the continued
+    execution doesn't halt there any longer.
+    First find out the ID of your breakpoint using `info break`:
 
 		(gdb) info break
 
-	In our case, it's `1`. To delete it, we can use
+    In our case, it's `1`. To delete it, we can use
 
 		(gdb) del 1
 
@@ -116,7 +119,7 @@ HINT: In gdb, if you hit `Enter` without typing in a command, it will execute
 
 		(gdb) break includes/my_includes.h:14
 
-	Run the program until it hits the breakpoint using `run`.
+    Run the program until it hits the breakpoint using `run`.
 
 11  You can print out values of pointers:
 

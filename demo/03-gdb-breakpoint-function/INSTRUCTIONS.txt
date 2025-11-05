@@ -26,6 +26,8 @@ in your program.
 
         (gdb) break error.h:error_exit
 
+    NOTE: No parentheses after error_exit, function name only!
+
 5   run the program inside gdb using `run`:
 
         (gdb) run

@@ -2,6 +2,7 @@
 #define ERROR_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void error_exit(char *message){
 

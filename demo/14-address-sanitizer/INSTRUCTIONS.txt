@@ -1,10 +1,6 @@
 14 Demo address sanitizer
 ==========================
 
-1) Compile and run. 
-2) Fix out-of-bounds access. Run again.
-3) Show memory leak detected.
-
 1   Look through the source code of the program.
     Note that this is the same base program as in demo 13-valgrind.
 
@@ -18,7 +14,7 @@
         $ ./ex
 
     It should execute without a message nor error.
-    (If you used the makefile, then you compiled with the address sanitizer
+    (If you used the Makefile, then you compiled with the address sanitizer
     switched on, and the code crashed with an error. You can skip to step 5.)
     But by looking through it, we know that it should've had memory errors - an 
     access out of bounds, and memory leaks.

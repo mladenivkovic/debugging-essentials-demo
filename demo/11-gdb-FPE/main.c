@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 
-/** This produces a divide-by-zero FPE for i = 800. */
+/* This produces a divide-by-zero FPE for i = 800. */
 double do_stuff(int i){
   return 123.456 / (i - 800);
 }
@@ -15,7 +15,7 @@ int main(void) {
 
   /* To pick and choose which type of FPE to raise: */
   /* feenableexcept(FE_DIVBYZERO); */
-  /* Options are: (Combine through binary OR) */
+  /* Options are: (Combine using binary OR operator `|`) */
   /* feenableexcept(FE_DIVBYZERO |
    *                FE_INEXACT |
    *                FE_INVALID |

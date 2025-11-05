@@ -17,17 +17,17 @@
 
         $ gdb ./ex
 
-4	Set a watchpoint at the `sum` variable:
+4	  Set a watchpoint at the `sum` variable:
 
         (gdb) watch sum
 
-5	Run the program using
+5	  Run the program using
 
         (gdb) run
 
     It should halt each time the value of `sum` has been modified.
 
-6	To watch a memory address/variable, it needs to be in scope. We'll
+6	  To watch a memory address/variable, it needs to be in scope. We'll
     now set a watchpoint for `sum2`, which is inside `int main()`.
 
 6.1	Set a breakpoint at line 21 in main.c and run gdb:
@@ -39,10 +39,10 @@
 
         (gdb) watch sum2
 
-	and run the program:
+    and run the program:
 
         (gdb) run
 
-HINT: Try setting a watchpoint with `sum2` being out of scope, e.g. right
-after starting up gdb. Get familiar with the error message you'll get.
+    HINT: Try setting a watchpoint with `sum2` being out of scope, e.g. right
+    after starting up gdb. Get familiar with the error message you'll get.
 

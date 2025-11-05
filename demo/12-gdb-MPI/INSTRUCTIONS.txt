@@ -1,10 +1,35 @@
 12 GDB + MPI
 ========================
 
-!!!!!!!! TODO: Write full instructions.
 
-Just use run.sh and show how gdb can be used with MPI
+1   Look through the source code of the program.
+    It's a very basic MPI program which will print a "Hello" from each rank and
+    then sleep for 1s. Rank 2 should crash after 20s.
 
-First show contents of main.c
+2   Don't forget to compile with the debug flags! Point them out on the compile
+    command. To compile the code, run `make`, or the full compilation command
+    manually, e.g.
 
-Rank 2 should crash after 20s
+        $ make
+
+    or
+
+        $ mpicc main.c -o exMPI -g -O0
+
+3   Run the program:
+
+        $ mpirun -n 4 ./exMPI
+
+    Rank 2 should crash after 20s.
+
+4   Run the program by attaching an `xterm` terminal emulator to each MPI rank,
+    which will launch `exMPI` in gdb directly: (See contents of `run.sh`)
+
+        $ mpirun -n 4 xterm -e gdb -ex run ./exMPI
+
+    Now, we catch the error!
+
+    NOTE: You may want to avoid using MPI_ABORT() while debugging.
+    Depending on the implementation, it will instantly quit `xterm`
+    instead of letting gdb handle the error.
+

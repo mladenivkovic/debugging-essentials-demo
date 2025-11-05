@@ -1,21 +1,67 @@
 10 GDB optimization
 ===========================
 
-!!!!!!!! TODO: Write full instructions.
+1   Look through the source code of the program.
+    The base program is the same as in exampe 08-gdb-segfault, except that the
+    loop has been moved into a function.
 
-same as demo for gdb segfault backtrace, 
-1) moved for loop into function
-2) added optimization flag -O3
+2   Don't forget to compile with the debug flags! Point them out on the compile
+    command. To compile the code, run `make`, or the full compilation command
+    manually, e.g.
 
-Show that values can be optimized out
+        $ make
 
-Idea: Show that single function can have optimization turned off
+    or
 
-#pragma GCC push_options
-#pragma GCC optimize ("O0")
+        $ gcc main.c -O3 -o ex -g -lm
+    
+    note that for this example, we want maximally aggressive optimisation, so
+    we're using the -O3 flag.
 
-your code
+3   run the program:
 
-#pragma GCC pop_options
+        $ ./ex
+
+    It should crash with a Segfault.
+
+
+4   run the program with gdb:
+
+        $ gdb ./ex
+        (gdb) run
+
+    It should halt at the Segfault, writing something like:
+
+        Program received signal SIGSEGV, Segmentation fault.
+        0x00005555555551d2 in assign_array_values (arr=<optimized out>, elements=elements@entry=10000000) at main.c:18
+        18	   arr[i] = i;
+
+    Here wee see that some values may be optimised out, such ass the `arr` variable.
+    We can't see its value:
+
+        (gdb) p arr
+        $1 = <optimized out>
+        (gdb) p *arr
+        value has been optimized out
+
+
+5   We have two options to deal with that
+
+5.1 Disable optimisation of the entire program: Compile with -O0 flag instead
+    of the -O3 flag
+
+5.2 Distable optimisation for a single function. If you're using gcc, you can
+    uncomment the following lines in main.c:
+
+        /* #pragma GCC push_options */                               // <- this one
+        /* #pragma GCC optimize ("O0") */                            // <- this one
+        void assign_array_values(int *arr, const int elements){
+
+        // contents....
+        /* #pragma GCC pop_options */                                // <- this one
+
+    Examples for other compilers are given as a comment at the bottom of main.c
+
+    Re-compile and re-run your program with gdb, and `arr` should now be accessible!
 
 

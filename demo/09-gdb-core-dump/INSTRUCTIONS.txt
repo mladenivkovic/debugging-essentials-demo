@@ -28,13 +28,21 @@
 5   Find out in which directory your system will dump the cores. This may be
     accomplished by running
 
-        $ coredump
+        $ coredumpctl info
+
+    This will show you the info of the latest core dump on your machine.
+    Look for the line starting with `Storage` to find where it is stored.
+
+    To see a list of available programs, use
+
+        $ coredumpctl list -r
+
+    `-r` will display all entries in reverse, i.e. newest first.
 
     If that doesn't work for you, you'll have to search the internet for 
-    answers. For Ubuntu 21+, the location is `/var/lib/apport/coredump/`
-
-5.1 Look at the current contents of the directory.
-
+    answers. Install coredumpctl, or look where the default coredump storage is
+    for your operating system. For Ubuntu 21+, the location is
+    `/var/lib/apport/coredump/`
 
 6   Run the program again:
 
@@ -55,4 +63,24 @@
         $ gdb -c /path/to/core/file ./ex
 
     gdb should now load up the state of your program just as it crashed.
+
+
+7.1 Some operating systems compress their core dumps first. In that case,
+    you'll need to uncompress it first, or use `coredumpctl` to launch gdb
+    instead:
+
+        $ coredumpctl debug
+
+    If `coredumpctl` doesn't find gdb, you can tell it which to use:
+
+        $ coredumpctl debug --debugger=/path/to/gdb
+
+    Alterantely, you can use `coredumpctl` to create a core dump:
+
+        $ coredumpctl dump --output <filename_you_want_your_core_dump_to_have>
+
+    and then launch using gdb:
+        
+        $ gdb -c <filename_you_want_your_core_dump_to_have> ./ex
+
 
