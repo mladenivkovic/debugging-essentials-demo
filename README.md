@@ -7,6 +7,7 @@ Also small exercise programs using linear advection.
 
 Contents:
 
+- `cheatsheet/`: A single-page LaTeX cheat sheet for gdb commands
 - `demo/` : small programs intended for live demo
 - `exercise/` : Small program intended for exercise. 
     Hunt down bugs in 1D linear advection code.
