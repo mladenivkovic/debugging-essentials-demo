@@ -5,7 +5,7 @@
 \usepackage[english]{babel}
 
 \usepackage{geometry}
-\geometry{margin=1.5cm}
+\geometry{margin=1cm}
 
 \usepackage[document]{ragged2e}
 \usepackage{listings}
@@ -87,31 +87,35 @@ frametitle=#1]\end{mdframed}}
 \begin{document}
 
 
-\section*{gdb Debugging Cheatsheet}
+\section*{\code{gdb} cheatsheet}
 
 
 
 
 \gdbsection{running gdb}
-
+%
 Remember to compile your program with debugging symbols enabled!
 That's usually the \code{-g} or \code{-ggdb} flag.
 
-Running your executable with \code{gdb}:
 %
 \begin{lstlisting}[belowskip=0pt]
 $ gdb /path/to/your/executable
 \end{lstlisting}
+%
+\quad Running your executable with \code{gdb}
 %
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 $ gdb --args /path/to/your/executable \
   --arg1 --arg2
 \end{lstlisting}
 %
-\quad\quad If your executable requires command line \\
-\quad\quad arguments (\code{\ddash arg1 \ddash arg2})
-
-
+\quad or
+%
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ gdb /path/to/your/exec
+(gdb) run --args --arg1 --arg2
+\end{lstlisting}
+\quad If \code{exec} requires cmdline args (\code{\ddash arg1, \ddash arg2})
 
 
 
@@ -158,23 +162,6 @@ $ gdb --args /path/to/your/executable \
 
 
 
-\gdbsection{gdb and MPI}
-
-\begin{lstlisting}[belowskip=-0.8 \baselineskip]
-$ mpirun -n 4 xterm -e gdb -ex \
-  run your_program
-\end{lstlisting}
-\quad\quad Runs 4 \code{xterm} terminals with \code{MPI} and\\
-\quad\quad executes your program through \code{gdb}
-
-\begin{lstlisting}[belowskip=-0.8 \baselineskip]
-$ mpirun -n 4 xterm -e gdb -ex \
-  run --args your_program --arg1 --arg2
-\end{lstlisting}
-\quad\quad same as above, but allows your program to \\
-\quad\quad read in command line arguments
-
-
 
 
 
@@ -185,18 +172,23 @@ $ mpirun -n 4 xterm -e gdb -ex \
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 $ ulimit -S -c unlimited
 \end{lstlisting}
-\quad\quad To enable core dumps on linux
+\quad To enable core dumps on linux
 
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
-$ coredump
+$ coredumpctl info
 \end{lstlisting}
-\quad\quad Command shows you where cores will be \\
-\quad\quad dumped on your system
+\quad Show info of last coredump.
 
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 $ gdb -c core.XXXX path/to/executable
 \end{lstlisting}
-\quad\quad Load core dump with \code{gdb}
+\quad Load core dump with \code{gdb}
+
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ coredumpctl debug [--debugger=/path/to/gdb]
+\end{lstlisting}
+\quad launch \code{gdb} through \code{coredumpctl}
+
 
 
 
@@ -247,6 +239,16 @@ disable/enable <brnr>
 \quad disable/enable \code{breakpoint} $<$brnr$>$ (skip or don't skip \\
 \quad it without deleting it)
 %
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+save breakpoints <filename>
+\end{lstlisting}
+\quad save breakpoints of current session in $<$filename$>$
+%
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+source <filename>
+\end{lstlisting}
+\quad load (e.g. breakpoints) from $<$filename$>$
+%
 
 
 
@@ -258,41 +260,60 @@ disable/enable <brnr>
 
 \gdbsection{gdb and ``value has been optimized out''}
 
-Either recompile your program without optimization, or tell compiler not to optimize specific
-function you're looking at. Doing that depends on the compiler.
+Either recompile your program without optimization (\code{-O0}), or tell
+compiler not to optimize specific function you're looking at. Doing that
+depends on the compiler.
 
-
-For \code{GCC}:
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
-
   void your_function(){...}
-
 #pragma GCC pop_options
 \end{lstlisting}
 %
-
-For \code{intel}:
+\quad for \code{GCC}
+%
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 #pragma optimize( "", off )
-
   void your_function() {...}
-
 #pragma optimize( "", on )
 \end{lstlisting}
-\quad\quad or
+\quad or
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 #pragma intel optimization_level 0
 	void your_funtction(){...}
 \end{lstlisting}
 %
-
-For \code{clang}:
+\quad For \code{intel}
+%
 \begin{lstlisting}[belowskip=-0.8 \baselineskip]
 __attribute__((optnone))
 	void your_function(){...}
 \end{lstlisting}
+\quad For \code{clang}
+
+
+
+
+
+
+
+\gdbsection{gdb and MPI}
+
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ mpirun -n 4 xterm -e gdb -ex \
+  run your_program
+\end{lstlisting}
+\quad Runs 4 \code{xterm} terminals with \code{MPI} and\\
+\quad executes your program through \code{gdb}
+
+\begin{lstlisting}[belowskip=-0.8 \baselineskip]
+$ mpirun -n 4 xterm -e gdb -ex \
+  run --args your_program --arg1 --arg2
+\end{lstlisting}
+\quad same as above, but allows your program to \\
+\quad read in command line arguments
+
 
 
 
