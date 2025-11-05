@@ -6,7 +6,6 @@
  * @param cells: array of all cells
  * @param ncells: number of non-ghost cells in array
  * @param nghosts: number of ghost cells on each boundary
- *
  */
 void bc_apply_periodic_boundary_conditions(struct cell* cells,
                                            const int ncells,
@@ -37,7 +36,6 @@ void bc_apply_periodic_boundary_conditions(struct cell* cells,
  * @param cells: array of all cells
  * @param ncells: number of non-ghost cells in array
  * @param nghosts: number of ghost cells on each boundary
- *
  */
 void bc_apply_boundary_conditions(struct cell* cells,
                                   const int ncells,

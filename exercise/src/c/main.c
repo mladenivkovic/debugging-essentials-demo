@@ -1,6 +1,5 @@
 /**
  * Main file for the linear advection solver.
- * This is the solution file, which should be bug-free.
  */
 
 #include "boundary_conditions.h"
