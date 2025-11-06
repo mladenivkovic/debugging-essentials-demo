@@ -69,17 +69,8 @@ void solver_solve_on_array(const double q_old[VECTOR_SIZE],
  */
 void solver_step(Grid &grid, int N, int nghost, double dt){
 
-  /* old state q(x) */
-  double* q_old = new double[VECTOR_SIZE];
-  /* new state q(x), i.e. state containing solution */
-  double* q_new = new double[VECTOR_SIZE];
-  /* advection coefficients. */
-  double* a = new double[VECTOR_SIZE];
-  /* advection coefficients. */
-  double* dx = new double[VECTOR_SIZE];
-
   /* Total number of cells */
-  const int ncells_tot = N + 2 * nghost;
+  const int ncells_tot = 2 * (N + nghost);
 
   /* Loop over all cells, including ghost cells, in chunks of VECTOR_SIZE.
    * However, we always need to access and read the element i - 1 in our update
@@ -90,14 +81,17 @@ void solver_step(Grid &grid, int N, int nghost, double dt){
    * thus read-only. */
   for (int i = 0; i < ncells_tot; i += VECTOR_SIZE - 1){
 
-    /* How many elements are we actually working on? */
-    int nelements = VECTOR_SIZE;
-    if (i + VECTOR_SIZE > ncells_tot){
-      nelements = ncells_tot - i;
-    }
+    /* old state q(x) */
+    double* q_old = new double[VECTOR_SIZE];
+    /* new state q(x), i.e. state containing solution */
+    double* q_new = new double[VECTOR_SIZE];
+    /* advection coefficients. */
+    double* a = new double[VECTOR_SIZE];
+    /* advection coefficients. */
+    double* dx = new double[VECTOR_SIZE];
 
     /* Gather data into arrays */
-    for (int j = 0; j < nelements; j++){
+    for (int j = 0; j < VECTOR_SIZE; j++){
       Cell& c = grid.get_cell(i + j);
       q_old[j] = c.q_old;
       q_new[j] = 0.;
@@ -106,10 +100,10 @@ void solver_step(Grid &grid, int N, int nghost, double dt){
     }
 
     /* Call the actual solver */
-    solver_solve_on_array(q_old, q_new, a, dx, nelements, dt);
+    solver_solve_on_array(q_old, q_new, a, dx, VECTOR_SIZE, dt);
 
     /* Copy solution back into array-of-structs */
-    for (int j = 1; j < nelements; j++){
+    for (int j = 1; j < VECTOR_SIZE; j++){
       Cell& c = grid.get_cell(i + j);
       c.q_new = q_new[j];
     }
@@ -121,10 +115,5 @@ void solver_step(Grid &grid, int N, int nghost, double dt){
       c.q_old = c.q_new;
   }
 
-  /* Clean up after yourself */
-  delete[] q_old;
-  delete[] q_new;
-  delete[] a;
-  delete[] dx;
 }
 
