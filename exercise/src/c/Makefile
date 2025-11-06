@@ -1,15 +1,19 @@
 # Set up your compiler and compiler flags here.
 # The default is set up for gcc. You may want to change that.
 # Typical compiler names are:
-# 	gcc
-# 	icc	 intel C compiler
-# 	icx  intel oneAPI C compiler
-# 	clang LLVM C compiler
+#	gcc   gnu C compiler
+#	icc   intel classic C compiler
+#	icx   intel oneAPI C compiler
+#	clang LLVM C compiler
 #
 # if you are working on DINE, you should first load a compiler module.
 # Then you should be able to pass the compiler as CCOMP=$(CC).
 # This should work for the gnu and intel compilers. For LLVM, you'd need
 # to use CCOMP=clang.
+
+# try using GCC as default. Will be overridden if the ${CC} variable is defined
+# in your environment.
+CC ?= gcc
 
 # compiler executable name
 CCOMP=$(CC) # should work on DINE
@@ -19,10 +23,10 @@ CCOMP=$(CC) # should work on DINE
 # CCOMP=icx
 
 # flags determining optimization
-OPTFLAGS= -O3 	# aggressive optimization
+OPTFLAGS= -O3			# aggressive optimization
 				# You may want to reduce the optimization lever during debugging.
 				# Try -O0, -O1, -O2 for example.
-DEBUGFLAGS= 	# Flags used for debugging. You'll want to add `-g` here to enable
+DEBUGFLAGS=			# Flags used for debugging. You'll want to add `-g` here to enable
 				# debugging symbols so you can work with gdb.
 CFLAGS= -std=c11
 

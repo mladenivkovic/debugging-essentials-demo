@@ -1,22 +1,32 @@
 # Set up your compiler and compiler flags here.
 # The default is set up for gfortran. You may want to change that.
 # Typical compiler names are:
-# 	gfortran	from the gcc compiler suite
-# 	ifort	 	intel fortran compiler
-# 	ifx  		intel oneAPI fortran compiler
+#	gfortran	from the gcc compiler suite
+#	ifort		intel classic fortran compiler
+#	ifx		intel oneAPI fortran compiler
+#	flang		LLVM fortran compiler
 #
 # if you are working on DINE, you should first load a compiler module.
 # Then you should be able to pass the compiler as FCOMP=$(F90)
 
+# try using gfortran as default. Will be overridden if the ${F90}
+# variable is defined in your environment.
+FC ?= gfortran
+F90 ?= $(FC)
+
+
 # compiler executable name
 FCOMP=$(F90)
 # FCOMP=gfortran
+# FCOMP=ifort
+# FCOMP=ifx
+# FCOMP=flang
 
 # flags determining optimization
-OPTFLAGS= -O3 	# aggressive optimization
+OPTFLAGS= -O3			# aggressive optimization
 				# You may want to reduce the optimization lever during debugging.
 				# Try -O0, -O1, -O2 for example.
-DEBUGFLAGS= 	# Flags used for debugging. You'll want to add `-g` here to enable
+DEBUGFLAGS=			# Flags used for debugging. You'll want to add `-g` here to enable
 				# debugging symbols so you can work with gdb.
 
 FORTRANFLAGS= -ffree-line-length-none
