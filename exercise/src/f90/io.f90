@@ -22,9 +22,10 @@ module io
       character(len=3)::nchar3
       character(len=4)::nchar4
 
-      if (n .gt. 9999) then
-        write(7, *) "I'm not made to write outputs > 9999"
-        stop
+      if (n .gt. 9) then
+        write(0, *) "I'm not made to write outputs > 9999"
+        call flush(0)
+        call abort
       endif
 
       if(n.ge.1000)then

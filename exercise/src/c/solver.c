@@ -81,7 +81,7 @@ void solver_step(struct cell* cells, int N, int nghost, double dt){
   double* dx;
 
   /* Total number of cells */
-  int ncells_tot = N + 2 * nghost;
+  int ncells_tot = 2 * (N + nghost);
 
   /* Loop over all cells, including ghost cells, in chunks of VECTOR_SIZE.
    * However, we always need to access and read the element i - 1 in our update

@@ -154,7 +154,7 @@ module solver
       allocate(dx(1:VECTOR_SIZE))
 
       ! Total number of cells
-      ncells_tot = ncells + 2 * nghosts
+      ncells_tot = 2 * (ncells + nghosts)
 
       ! Loop over all cells, including ghost cells, in chunks of VECTOR_SIZE.
       ! However, we always need to access and read the element i - 1 in our update

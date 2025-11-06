@@ -1,13 +1,7 @@
 - show how to break infinite loop while it's running 
 - update ex 01 to contain finish, step, etc 
-- maybe add a second exercise version with more problems that aren't only
-  memory related so people can play with it more. You used to have some more
-  boundary condition issues.
-- Plan demos for a playalong with audience
-- Write c++ exercise
-- Exercises: Add an error that instantly crashes, so they can launch up gdb and
-  see where it's happening
-- Exercises: Add an FPE error that produces infs/nans
+- Plan demos for a playalong with audience?
+- Exercises: Add an FPE error that produces infs/nans?
 - Mention that examples come along with a Makefile.
 - Plan the hands-on session as the full afternoon, and the intro session with
   live demo and playalong as first session taking ~2h.

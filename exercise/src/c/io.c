@@ -20,7 +20,7 @@ void io_write_output(int *snapshot,
                      int ncells,
                      int nghosts) {
 
-  if (*snapshot > 9999){
+  if (*snapshot > 9){
     fprintf(stderr, "I'm not made to write outputs > 9999\n");
     fflush(stderr);
     abort();
