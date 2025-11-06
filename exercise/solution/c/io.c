@@ -17,8 +17,8 @@ void io_write_output(int *snapshot,
                      int step,
                      float t,
                      struct cell* cells,
-                     const int ncells,
-                     const int nghosts) {
+                     int ncells,
+                     int nghosts) {
 
   if (*snapshot > 9999){
     abort();

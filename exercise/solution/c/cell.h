@@ -16,7 +16,7 @@ struct cell {
   double dx;
 };
 
-void cell_first_init(struct cell* cells, const int N, const double dx);
+void cell_first_init(struct cell* cells, int N, double dx);
 void cell_copy(struct cell* src, struct cell* dest);
 
 #endif

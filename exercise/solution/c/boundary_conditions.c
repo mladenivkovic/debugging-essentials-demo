@@ -6,11 +6,10 @@
  * @param cells: array of all cells
  * @param ncells: number of non-ghost cells in array
  * @param nghosts: number of ghost cells on each boundary
- *
  */
 void bc_apply_periodic_boundary_conditions(struct cell* cells,
-                                           const int ncells,
-                                           const int nghosts){
+                                           int ncells,
+                                           int nghosts){
 
   /* Copy content of right boundary into left ghost cells */
   for (int i = 0; i < nghosts; i++){
@@ -37,11 +36,10 @@ void bc_apply_periodic_boundary_conditions(struct cell* cells,
  * @param cells: array of all cells
  * @param ncells: number of non-ghost cells in array
  * @param nghosts: number of ghost cells on each boundary
- *
  */
 void bc_apply_boundary_conditions(struct cell* cells,
-                                  const int ncells,
-                                  const int nghosts){
+                                  int ncells,
+                                  int nghosts){
 
   bc_apply_periodic_boundary_conditions(cells, ncells, nghosts);
 }

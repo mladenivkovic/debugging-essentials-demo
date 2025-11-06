@@ -17,7 +17,7 @@
  *
  * @return dt_max the maximally permissible time step size for this step.
  */
-double solver_find_next_time_step_size(struct cell *cells, const int N, const double CFL_factor){
+double solver_find_next_time_step_size(struct cell *cells, int N, double CFL_factor){
 
   double dt_max = 0.;
   for (int i = 0; i < N; i++) {
@@ -45,8 +45,8 @@ void solver_solve_on_array(double* q_old,
                     double* q_new,
                     double* a,
                     double* dx,
-                    const int N,
-                    const double dt){
+                    int N,
+                    double dt){
 
   for (int i = 1; i < N; i++){
     q_new[i] = q_old[i] + a[i] * dt / dx[i] * (q_old[i-1] - q_old[i]);
@@ -69,7 +69,7 @@ void solver_solve_on_array(double* q_old,
  * @param nghost number of boundary ghost cells
  * @param dt the time step size to integrate over.
  */
-void solver_step(struct cell* cells, const int N, const int nghost, const double dt){
+void solver_step(struct cell* cells, int N, int nghost, double dt){
 
   /* old state q(x) */
   double* q_old;

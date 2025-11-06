@@ -1,3 +1,5 @@
+/* Functions related to setting up initial conditions. */
+
 #include "initial_conditions.h"
 
 /**
@@ -14,9 +16,9 @@
  * @param dx size of each cell
  */
 void ic_setup_top_hat_inital_conditions(struct cell* cells,
-                              const int N,
-                              const int nghosts,
-                              const double boxsize,
+                              int N,
+                              int nghosts,
+                              double boxsize,
                               double a,
                               double dx) {
 
@@ -45,9 +47,9 @@ void ic_setup_top_hat_inital_conditions(struct cell* cells,
  * @param dx size of each cell
  */
 void ic_setup_initial_conditions(struct cell* cells,
-                              const int N,
-                              const int nghosts,
-                              const double boxsize,
+                              int N,
+                              int nghosts,
+                              double boxsize,
                               double a,
                               double dx) {
   ic_setup_top_hat_inital_conditions(cells, N, nghosts, boxsize, a, dx);
