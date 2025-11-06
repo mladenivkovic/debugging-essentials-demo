@@ -21,8 +21,9 @@ void io_write_output(int *snapshot,
                      int nghosts) {
 
   if (*snapshot > 9999){
+    fprintf(stderr, "I'm not made to write outputs > 9999\n");
+    fflush(stderr);
     abort();
-    fprintf(stderr,"I'm not made to write outputs > 9999\n");
   }
 
   /* generate output filename for this snapshot */

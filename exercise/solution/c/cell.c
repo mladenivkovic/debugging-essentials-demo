@@ -1,5 +1,3 @@
-/* Definition of the cell struct and related functions */
-
 #include "cell.h"
 
 /**

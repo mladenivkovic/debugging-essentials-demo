@@ -8,8 +8,6 @@
 - Exercises: Add an error that instantly crashes, so they can launch up gdb and
   see where it's happening
 - Exercises: Add an FPE error that produces infs/nans
-- Exercises Makefile solution f90: define F90 as gfortran only if F90 variable
-  isn't defined yet (probably same for c)
 - Mention that examples come along with a Makefile.
 - Plan the hands-on session as the full afternoon, and the intro session with
   live demo and playalong as first session taking ~2h.

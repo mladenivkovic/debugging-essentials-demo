@@ -116,6 +116,7 @@ void solver_step(struct cell* cells, int N, int nghost, double dt){
     }
   }
 
+
   /* Once we're finished, copy the result back from q_new into q_old */
   for (int i = 0; i < ncells_tot; i++){
       struct cell* c = &cells[i];
