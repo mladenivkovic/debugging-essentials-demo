@@ -1,0 +1,28 @@
+#include "initial_conditions.h"
+
+/**
+ * Set up top hat initial conditions.
+ * q(x, t=t0) = 1 if x < 1/3 * boxsize or x > 2/3 * boxsize
+ *            = 2 if 1/3 * boxsize <= x <= 2/3 * boxsize
+ * a(x, t) = a_0 = const
+ *
+ * @param N number of (non-ghost) cells in array
+ * @param nghosts number of ghost cells on boundaries
+ * @param boxsize size of simulated box
+ * @param a advection coefficient
+ */
+void ic_setup_top_hat_inital_conditions(Cell& cell,
+                              int N,
+                              int nghosts,
+                              double boxsize,
+                              double a,
+                              double dx) {
+
+  cell.a = a;
+  cell.q_old = 1.;
+  double x = (cell.index - nghosts + 0.5) * dx;
+  if ((boxsize / 3. <= x) && (x <= 2. * boxsize / 3.)) {
+    cell.q_old = 2.;
+  }
+}
+
